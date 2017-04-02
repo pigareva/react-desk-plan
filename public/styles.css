@@ -1,0 +1,13 @@
+body {
+  font: 16px/1 sans-serif;
+}
+#root {
+  height: 100%;
+
+}
+.table-flex-container {
+  display: flex;
+  border: 3px black;
+  min-width: 900px;
+  min-hight: 300px;
+}
