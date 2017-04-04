@@ -436,7 +436,7 @@ class OfficeRoom extends Component {
 
     <div className="container">
       <header>
-        <h1 className="text-center">HOMELIKE desk plan</h1>
+        <h1 className="text-center">Desk plan</h1>
       </header>
 
       <div className="table-flex-container">
