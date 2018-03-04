@@ -224,7 +224,7 @@ let employees = [
 
 ];
 
-var tables = [
+let tables = [
   {
     "_id": "01",
     "department": "Founder, HR & Finance",
@@ -394,7 +394,46 @@ var tables = [
 
 ];
 
+class Clock extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {time: 0};
+  }
+
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    const currentTime = this.state.time;
+    this.setState({ time: currentTime + 1 });
+  }
+
+  render() {
+    return (
+      <div>
+        <h2>It is {this.state.time}.</h2>
+      </div>
+    );
+  }
+}
+
 class EmployeeOnDesk extends Component {
+  constructor(props) {
+    super(props);
+    this.goHome = this.goHome.bind(this);
+    this.comeToOffice = this.comeToOffice.bind(this);
+    this.toggleEmployeeOnDesk = this.toggleEmployeeOnDesk.bind(this);
+    this.state = {atWork: false};
+  }
+
 
   render() {
 
@@ -404,8 +443,28 @@ class EmployeeOnDesk extends Component {
           <li><b><a href={"mailto:" + this.props.employee.email}>{this.props.employee.name}</a></b></li>
           <li>{this.props.employee.department}</li>
         </ul>
+        <button onClick={this.toggleEmployeeOnDesk}>
+          {/*// ToDo I'm working since*/}
+          {this.state.atWork ? 'I am working' : 'I am relaxing'}
+        </button>
       </div>
     );
+  }
+
+  goHome() {
+    this.setState({ atWork: false });
+  };
+
+  comeToOffice() {
+    this.setState({ atWork: true });
+  };
+
+  toggleEmployeeOnDesk() {
+    if (this.state.atWork) {
+      this.goHome();
+    } else {
+      this.comeToOffice();
+    }
   }
 }
 
@@ -437,6 +496,7 @@ class OfficeRoom extends Component {
     <div className="container">
       <header>
         <h1 className="text-center">Desk plan</h1>
+        <Clock />
       </header>
 
       <div className="table-flex-container">
