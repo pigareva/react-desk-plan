@@ -413,7 +413,7 @@ class Clock extends Component {
 
   tick() {
     const currentTime = this.state.time;
-    this.setState({ time: currentTime + 1 });
+    this.setState((prevState) => ({ counter: prevState.time + 1 }));
   }
 
   render() {
@@ -431,14 +431,15 @@ class EmployeeOnDesk extends Component {
     this.goHome = this.goHome.bind(this);
     this.comeToOffice = this.comeToOffice.bind(this);
     this.toggleEmployeeOnDesk = this.toggleEmployeeOnDesk.bind(this);
-    this.state = {atWork: false};
+    this.state = {atWork: false, timeAtWork: 0 };
   }
 
 
   render() {
+    const descStyle = this.state.atWork ? "desk-flex-block desk-at-work" : "desk-flex-block";
 
     return (
-      <div className="desk-flex-block">
+      <div className={descStyle}>
         <ul>
           <li><b><a href={"mailto:" + this.props.employee.email}>{this.props.employee.name}</a></b></li>
           <li>{this.props.employee.department}</li>
@@ -447,16 +448,19 @@ class EmployeeOnDesk extends Component {
           {/*// ToDo I'm working since*/}
           {this.state.atWork ? 'I am working' : 'I am relaxing'}
         </button>
+        <Clock time={this.state.timeAtWork}/>
       </div>
     );
   }
 
   goHome() {
     this.setState({ atWork: false });
+    // clear interval
   };
 
   comeToOffice() {
     this.setState({ atWork: true });
+  // set interval
   };
 
   toggleEmployeeOnDesk() {
