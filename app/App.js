@@ -398,7 +398,8 @@ let tables = [
 class Clock extends Component {
   constructor(props) {
     super(props);
-    this.state = {time: 540};
+    this.state = {time: props.time};
+    this.isGreetingNeeded = props.isGreetingNeeded || false;
   }
 
   componentDidMount() {
@@ -521,7 +522,7 @@ class OfficeRoom extends Component {
     <div className="container">
       <header>
         <h1 className="text-center">Desk plan</h1>
-        <Clock />
+        <Clock time={540} isGreetingNeeded={true}/>
       </header>
 
       <div className="table-flex-container">
