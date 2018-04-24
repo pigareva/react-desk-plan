@@ -169,6 +169,27 @@ let employees = [
     "email": "krum@pigareva.cc",
     "photo": "",
   },
+  {
+    "_id": "25",
+    "department": "Marketing",
+    "name": "Dolores Jane Umbridge",
+    "email": "umbridge@pigareva.cc",
+    "photo": "",
+  },
+  {
+    "_id": "26",
+    "department": "Marketing",
+    "name": "Dolores Jane Umbridge",
+    "email": "umbridge@pigareva.cc",
+    "photo": "",
+  },
+  {
+    "_id": "27",
+    "department": "Marketing",
+    "name": "Dolores Jane Umbridge",
+    "email": "umbridge@pigareva.cc",
+    "photo": "",
+  },
  {
     "_id": "28",
     "department": "Product management",
@@ -184,6 +205,20 @@ let employees = [
   },
   {
     "_id": "30",
+    "department": "Marketing",
+    "name": "Dolores Jane Umbridge",
+    "email": "umbridge@pigareva.cc",
+    "photo": "",
+  },
+  {
+    "_id": "31",
+    "department": "Marketing",
+    "name": "Dolores Jane Umbridge",
+    "email": "umbridge@pigareva.cc",
+    "photo": "",
+  },
+  {
+    "_id": "32",
     "department": "Marketing",
     "name": "Dolores Jane Umbridge",
     "email": "umbridge@pigareva.cc",
@@ -358,19 +393,18 @@ let tables = [
         "idEmployee": null,
       }],
   },
-
 ];
 
 class Clock extends Component {
   constructor(props) {
     super(props);
-    this.state = {time: 0};
+    this.state = {time: 540};
   }
 
   componentDidMount() {
     this.timerID = setInterval(
       () => this.tick(),
-      1000
+      100
     );
   }
 
@@ -380,13 +414,13 @@ class Clock extends Component {
 
   tick() {
     const currentTime = this.state.time;
-    this.setState((prevState) => ({ counter: prevState.time + 1 }));
+    this.setState({ time: currentTime >= 1440 ? 540 : currentTime + 1 });
   }
 
   render() {
     return (
       <div>
-        <h2>It is {this.state.time}.</h2>
+        <h3>Local time is {String(Math.floor(this.state.time/60)).padStart(2, '0')}:{String(this.state.time % 60).padStart(2, '0')}.</h3>
       </div>
     );
   }
@@ -541,7 +575,6 @@ class OfficeRoom extends Component {
         </div>
       </div>
     </div>
-
     );
   }
 }
