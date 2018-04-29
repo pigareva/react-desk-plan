@@ -398,30 +398,40 @@ let tables = [
 class Clock extends Component {
   constructor(props) {
     super(props);
-    this.state = {time: props.time};
+    this.state = {time: props.time, isOff: false };
     this.isGreetingNeeded = props.isGreetingNeeded || false;
   }
 
   componentDidMount() {
+    this.startTime();
+  }
+
+  componentWillUnmount() {
+    this.stopTime();
+  }
+
+  tick() {
+    const currentTime = this.state.time;
+    if (!this.state.isOff) {
+      this.setState({ time: currentTime >= 1440 ? 540 : currentTime + 1 });
+    }
+  }
+
+  stopTime(){
+    clearInterval(this.timerID);
+  }
+
+  startTime() {
     this.timerID = setInterval(
       () => this.tick(),
       100
     );
   }
 
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
-
-  tick() {
-    const currentTime = this.state.time;
-    this.setState({ time: currentTime >= 1440 ? 540 : currentTime + 1 });
-  }
-
   render() {
     return (
       <div>
-        <h3>Local time is {String(Math.floor(this.state.time/60)).padStart(2, '0')}:{String(this.state.time % 60).padStart(2, '0')}.</h3>
+        <h3>{String(Math.floor(this.state.time/60)).padStart(2, '0')}:{String(this.state.time % 60).padStart(2, '0')}.</h3>
       </div>
     );
   }
@@ -453,7 +463,7 @@ class EmployeeOnDesk extends Component {
     this.goHome = this.goHome.bind(this);
     this.comeToOffice = this.comeToOffice.bind(this);
     this.toggleEmployeeOnDesk = this.toggleEmployeeOnDesk.bind(this);
-    this.state = {atWork: false, timeAtWork: 0 };
+    this.state = {atWork: true, timeAtWork: 0, timerIsOff: false };
   }
 
 
@@ -470,19 +480,21 @@ class EmployeeOnDesk extends Component {
           {/*// ToDo I'm working since*/}
           {this.state.atWork ? 'I am working' : 'I am relaxing'}
         </button>
-        <Clock time={this.state.timeAtWork}/>
+        <Clock time={0} isOff={this.state.timerIsOff}/>
       </div>
     );
   }
 
+  componentDidMount() {
+    this.comeToOffice();
+  };
+
   goHome() {
-    this.setState({ atWork: false });
-    // clear interval
+    this.setState({ atWork: false, timerIsOff: true });
   };
 
   comeToOffice() {
-    this.setState({ atWork: true });
-  // set interval
+    this.setState({ atWork: true, timerIsOff: false });
   };
 
   toggleEmployeeOnDesk() {
@@ -522,6 +534,7 @@ class OfficeRoom extends Component {
     <div className="container">
       <header>
         <h1 className="text-center">Desk plan</h1>
+        <p>Local time is</p>
         <Clock time={540} isGreetingNeeded={true}/>
       </header>
 
