@@ -3,13 +3,6 @@ import {render} from 'react-dom';
 
 let employees = [
   {
-    "_id": "",
-    "department": "",
-    "name": "",
-    "email": "",
-    "photo": "",
-  },
-  {
     "_id": "01",
     "department": "Founder",
     "name": "Harry Potter",
@@ -406,14 +399,31 @@ function getDepartmentsList() {
 }
 
 function getDepartmentsWithEmployees() {
-  const departmentsWithEmployees = {};
+  const departmentsWithEmployees = [];
   getDepartmentsList().forEach((department) => {
-    departmentsWithEmployees.push({ department: [] });
+    departmentsWithEmployees.push({ [department]: [] });
   });
   employees.forEach((employee) =>{
-    departmentsWithEmployees[employee.department].push(employee);
+    const department = departmentsWithEmployees.find(department => department.keys().includes(employee.department));
+    department[employee.department].push(employee);
   });
   return departmentsWithEmployees;
+}
+
+function getTables() {
+  const tables = [];
+  const departmentsWithEmployees = getDepartmentsWithEmployees();
+
+  for (let i = 0; i < departmentsWithEmployees.length; i++) {
+    const department = departmentsWithEmployees[i].keys()[0];
+    tables.push({
+      _id: i+1,
+      department,
+      desks: departmentsWithEmployees[i][department],
+    })
+  }
+
+  return tables;
 }
 
 class Clock extends Component {
