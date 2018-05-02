@@ -395,6 +395,16 @@ let tables = [
   },
 ];
 
+function getDepartmentsList() {
+  const departments = [];
+  employees.forEach((employee) =>{
+    if (!departments.includes(employee.department)) {
+      departments.push(employee.department);
+    }
+  });
+  return departments;
+}
+
 class Clock extends Component {
   constructor(props) {
     super(props);
@@ -508,6 +518,7 @@ class EmployeeOnDesk extends Component {
 
 class TableWithEmployees extends Component {
   render() {
+    console.log('TableWithEmployees', this.props.table);
 
     return (
       <div className="table-flex-block">
