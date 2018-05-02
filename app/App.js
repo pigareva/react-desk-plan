@@ -539,18 +539,15 @@ class EmployeeOnDesk extends Component {
 
 class TableWithEmployees extends Component {
   render() {
-    console.log('TableWithEmployees', this.props.table);
+    const emloyeesOnTable = this.props.table.desks.map((desk) => {
+      <EmployeeOnDesk employee={desk}/>
+    });
 
     return (
-      <div className="table-flex-block">
+      <div className="table-flex-block" key={this.props.table.department}>
         <h1 className="text-center">{this.props.table.department}</h1>
         <div className="desk-flex-container">
-          <EmployeeOnDesk employee={employees[1]}/>
-          <EmployeeOnDesk employee={employees[2]}/>
-        </div>
-        <div className="desk-flex-container">
-          <EmployeeOnDesk employee={employees[3]}/>
-          <EmployeeOnDesk employee={employees[4]}/>
+          {emloyeesOnTable}
         </div>
       </div>
     );
