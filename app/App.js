@@ -405,6 +405,17 @@ function getDepartmentsList() {
   return departments;
 }
 
+function getDepartmentsWithEmployees() {
+  const departmentsWithEmployees = {};
+  getDepartmentsList().forEach((department) => {
+    departmentsWithEmployees.push({ department: [] });
+  });
+  employees.forEach((employee) =>{
+    departmentsWithEmployees[employee.department].push(employee);
+  });
+  return departmentsWithEmployees;
+}
+
 class Clock extends Component {
   constructor(props) {
     super(props);
@@ -551,7 +562,19 @@ class OfficeRoom extends Component {
 
       <div className="table-flex-container">
 
-        <TableWithEmployees table={tables[0]}/>
+        <div className="table-flex-block">
+          <h1 className="text-center">{tables[0].department}</h1>
+          <div className="desk-flex-container">
+            <EmployeeOnDesk employee={employees[5]}/>
+            <EmployeeOnDesk employee={employees[6]}/>
+            <EmployeeOnDesk employee={employees[28]}/>
+          </div>
+          <div className="desk-flex-container">
+            <EmployeeOnDesk employee={employees[8]}/>
+            <EmployeeOnDesk employee={employees[9]}/>
+            <EmployeeOnDesk employee={employees[10]}/>
+          </div>
+        </div>
 
         <div className="table-flex-block">
           <h1 className="text-center">{tables[1].department}</h1>
