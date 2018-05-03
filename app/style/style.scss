@@ -19,7 +19,6 @@
     display: flex;
     justify-content: space-around;
     flex-wrap:wrap;
-    flex-wrap: wrap;
     align-content: space-around;
     min-height: 100px;
     margin: 5% auto;
@@ -37,7 +36,7 @@
   }
 
   .desk-at-work {
-    background-image: url('../public/img/at-work-icon.jpg');
+    background-image: url('../../public/img/at-work-icon.jpg');
   }
 
   .table-flex-container {

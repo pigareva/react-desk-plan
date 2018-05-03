@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
+import '../app/style/style.scss';
+
 let employees = [
   {
     "_id": "31",
