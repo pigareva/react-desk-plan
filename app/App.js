@@ -5,13 +5,6 @@ import '../app/style/style.scss';
 
 let employees = [
   {
-    "_id": "31",
-    "department": "Working students",
-    "name": "Dudley Dursley",
-    "email": "dursley@pigareva.de",
-    "photo": "",
-  },
-  {
     "_id": "01",
     "department": "Founder",
     "name": "Harry Potter",
@@ -203,6 +196,13 @@ let employees = [
     "department": "Working students",
     "name": "John Doe",
     "email": "john@pigareva.cc",
+    "photo": "",
+  },
+  {
+    "_id": "31",
+    "department": "Working students",
+    "name": "Dudley Dursley",
+    "email": "dursley@pigareva.de",
     "photo": "",
   },
 ];
