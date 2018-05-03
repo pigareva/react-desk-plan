@@ -1,7 +1,14 @@
-import React, {Component} from 'react';
-import {render} from 'react-dom';
+import React, { Component } from 'react';
+import { render } from 'react-dom';
 
 let employees = [
+  {
+    "_id": "",
+    "department": "Working students",
+    "name": "",
+    "email": "",
+    "photo": "",
+  },
   {
     "_id": "01",
     "department": "Founder",
@@ -183,7 +190,7 @@ let employees = [
     "email": "umbridge@pigareva.cc",
     "photo": "",
   },
- {
+  {
     "_id": "28",
     "department": "Product management",
     "name": "Severus Snape",
@@ -399,31 +406,45 @@ function getDepartmentsList() {
 }
 
 function getDepartmentsWithEmployees() {
-  const departmentsWithEmployees = [];
-  getDepartmentsList().forEach((department) => {
-    departmentsWithEmployees.push({ [department]: [] });
+  const departmentIndex = {};
+
+  employees.forEach((employee) => {
+    const department = employee.department;
+
+    if (departmentIndex.hasOwnProperty(department)) {
+      departmentIndex[department].employees.push(employee);
+    } else {
+      departmentIndex[department] = {
+        department,
+        employees: [employee],
+      }
+    }
   });
-  employees.forEach((employee) =>{
-    const department = departmentsWithEmployees.find(department => department.keys().includes(employee.department));
-    department[employee.department].push(employee);
-  });
-  return departmentsWithEmployees;
+
+  return departmentIndex;
 }
 
 function getTables() {
-  const tables = [];
-  const departmentsWithEmployees = getDepartmentsWithEmployees();
+  const tab = [];
+  const departments = getDepartmentsList();
 
-  for (let i = 0; i < departmentsWithEmployees.length; i++) {
-    const department = departmentsWithEmployees[i].keys()[0];
-    tables.push({
-      _id: i+1,
-      department,
-      desks: departmentsWithEmployees[i][department],
-    })
-  }
+  departments.forEach((department, i) => {
+    const table = {
+      _id: i + 1,
+      department: department,
+      desks: [],
+    };
+    tab.push(table);
+  });
 
-  return tables;
+  employees.forEach((employee, i) => {
+    console.log('EMPLOYEE', employee, i);
+    tab.find((table) => {
+      return table.department === employee.department;
+    }).desks.push(employee)
+  });
+
+  return tab;
 }
 
 class Clock extends Component {
