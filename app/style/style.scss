@@ -26,17 +26,19 @@
   }
 
   .desk-flex-block {
-    border: 1px gray dashed;
-    min-width: 250px;
-    min-height: 100px;
-    align-content: space-around;
-    ul{
-      list-style: none;
+       border: 1px gray dashed;
+       min-width: 250px;
+       min-height: 100px;
+       align-content: space-around;
+       margin-bottom: 20px;
+       ul {
+         list-style: none;
+       }
      }
-  }
 
   .desk-at-work {
-    background-image: url('../../public/img/at-work-icon.jpg');
+    background: url('../../public/img/at-work-icon.jpg') center no-repeat;
+    background-size: auto 100%;
   }
 
   .table-flex-container {
