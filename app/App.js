@@ -3,10 +3,10 @@ import { render } from 'react-dom';
 
 let employees = [
   {
-    "_id": "99",
+    "_id": "31",
     "department": "Working students",
-    "name": "",
-    "email": "",
+    "name": "Dudley Dursley",
+    "email": "dursley@pigareva.de",
     "photo": "",
   },
   {
@@ -27,6 +27,13 @@ let employees = [
     "_id": "03",
     "department": "HR",
     "name": "Hermione Granger",
+    "email": "granger@pigareva.cc",
+    "photo": "",
+  },
+  {
+    "_id": "30",
+    "department": "HR",
+    "name": "Minerva McGonagall",
     "email": "granger@pigareva.cc",
     "photo": "",
   },
@@ -179,49 +186,21 @@ let employees = [
   {
     "_id": "26",
     "department": "Marketing",
-    "name": "Dolores Jane Umbridge",
-    "email": "umbridge@pigareva.cc",
+    "name": "Argus Filch",
+    "email": "filch@pigareva.cc",
     "photo": "",
   },
   {
     "_id": "27",
-    "department": "Marketing",
-    "name": "Dolores Jane Umbridge",
-    "email": "umbridge@pigareva.cc",
-    "photo": "",
-  },
-  {
-    "_id": "28",
-    "department": "Product management",
+    "department": "Product Team",
     "name": "Severus Snape",
     "email": "snape@pigareva.cc",
     "photo": "",
   }, {
-    "_id": "29",
+    "_id": "28",
     "department": "Working students",
     "name": "John Doe",
     "email": "john@pigareva.cc",
-    "photo": "",
-  },
-  {
-    "_id": "30",
-    "department": "Marketing",
-    "name": "Dolores Jane Umbridge",
-    "email": "umbridge@pigareva.cc",
-    "photo": "",
-  },
-  {
-    "_id": "31",
-    "department": "Marketing",
-    "name": "Dolores Jane Umbridge",
-    "email": "umbridge@pigareva.cc",
-    "photo": "",
-  },
-  {
-    "_id": "32",
-    "department": "Marketing",
-    "name": "Dolores Jane Umbridge",
-    "email": "umbridge@pigareva.cc",
     "photo": "",
   },
 ];
