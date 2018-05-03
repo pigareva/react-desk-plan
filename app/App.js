@@ -559,15 +559,14 @@ class EmployeeOnDesk extends Component {
 
 class TableWithEmployees extends Component {
   render() {
-    const emloyeesOnTable = this.props.table.desks.map((desk) => {
-      <EmployeeOnDesk employee={desk}/>
-    });
+    console.log('TableWithEmployees employees', this.props.table.employees);
+    const employeesOnTable = this.props.table.employees.map((employee) => <EmployeeOnDesk employee={employee} key={employee[_id]}/>);
 
     return (
       <div className="table-flex-block" key={this.props.table.department}>
         <h1 className="text-center">{this.props.table.department}</h1>
         <div className="desk-flex-container">
-          {emloyeesOnTable}
+          {employeesOnTable}
         </div>
       </div>
     );
