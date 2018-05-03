@@ -397,7 +397,7 @@ let tables = [
 
 function getDepartmentsList() {
   const departments = [];
-  employees.forEach((employee) =>{
+  employees.forEach((employee) => {
     if (!departments.includes(employee.department)) {
       departments.push(employee.department);
     }
@@ -450,7 +450,7 @@ function getTables() {
 class Clock extends Component {
   constructor(props) {
     super(props);
-    this.state = {time: props.time, isOff: false };
+    this.state = { time: props.time, isOff: false };
     this.isGreetingNeeded = props.isGreetingNeeded || false;
   }
 
@@ -469,21 +469,21 @@ class Clock extends Component {
     }
   }
 
-  stopTime(){
+  stopTime() {
     clearInterval(this.timerID);
   }
 
   startTime() {
     this.timerID = setInterval(
       () => this.tick(),
-      100
+      100,
     );
   }
 
   render() {
     return (
       <div>
-        <h3>{String(Math.floor(this.state.time/60)).padStart(2, '0')}:{String(this.state.time % 60).padStart(2, '0')}.</h3>
+        <h3>{String(Math.floor(this.state.time / 60)).padStart(2, '0')}:{String(this.state.time % 60).padStart(2, '0')}.</h3>
       </div>
     );
   }
@@ -495,14 +495,14 @@ class Greeting extends Component {
   }
 
   render() {
-    const hh = this.state.time/60;
+    const hh = this.state.time / 60;
     switch (true) {
-      case (hh >= 8 && hh <=10):
-        return <h2>  'Good Morning!' </h2>;
-      case (hh >= 12 && hh <=14):
-        return <h2>  'Bon appetite!'</h2>;
-      case (hh >= 17 && hh <=20):
-        return <h2>  'Bye bye!'</h2>;
+      case (hh >= 8 && hh <= 10):
+        return <h2> 'Good Morning!' </h2>;
+      case (hh >= 12 && hh <= 14):
+        return <h2> 'Bon appetite!'</h2>;
+      case (hh >= 17 && hh <= 20):
+        return <h2> 'Bye bye!'</h2>;
       default:
         return null;
     }
@@ -515,9 +515,8 @@ class EmployeeOnDesk extends Component {
     this.goHome = this.goHome.bind(this);
     this.comeToOffice = this.comeToOffice.bind(this);
     this.toggleEmployeeOnDesk = this.toggleEmployeeOnDesk.bind(this);
-    this.state = {atWork: true, timeAtWork: 0, timerIsOff: false };
+    this.state = { atWork: true, timeAtWork: 0, timerIsOff: false };
   }
-
 
   render() {
     const descStyle = this.state.atWork ? "desk-flex-block desk-at-work" : "desk-flex-block";
@@ -575,104 +574,102 @@ class TableWithEmployees extends Component {
   }
 }
 
-
 class OfficeRoom extends Component {
   render() {
     return (
 
+      <div className="container">
+        <header>
+          <h1 className="text-center">Desk plan</h1>
+          <p>Local time is</p>
+          <Clock time={540} isGreetingNeeded={true}/>
+        </header>
 
-    <div className="container">
-      <header>
-        <h1 className="text-center">Desk plan</h1>
-        <p>Local time is</p>
-        <Clock time={540} isGreetingNeeded={true}/>
-      </header>
+        <div className="table-flex-container">
 
-      <div className="table-flex-container">
+          <div className="table-flex-block">
+            <h1 className="text-center">{tables[0].department}</h1>
+            <div className="desk-flex-container">
+              <EmployeeOnDesk employee={employees[5]}/>
+              <EmployeeOnDesk employee={employees[6]}/>
+              <EmployeeOnDesk employee={employees[28]}/>
+            </div>
+            <div className="desk-flex-container">
+              <EmployeeOnDesk employee={employees[8]}/>
+              <EmployeeOnDesk employee={employees[9]}/>
+              <EmployeeOnDesk employee={employees[10]}/>
+            </div>
+          </div>
 
-        <div className="table-flex-block">
-          <h1 className="text-center">{tables[0].department}</h1>
-          <div className="desk-flex-container">
-            <EmployeeOnDesk employee={employees[5]}/>
-            <EmployeeOnDesk employee={employees[6]}/>
-            <EmployeeOnDesk employee={employees[28]}/>
+          <div className="table-flex-block">
+            <h1 className="text-center">{tables[1].department}</h1>
+            <div className="desk-flex-container">
+              <EmployeeOnDesk employee={employees[5]}/>
+              <EmployeeOnDesk employee={employees[6]}/>
+              <EmployeeOnDesk employee={employees[28]}/>
+            </div>
+            <div className="desk-flex-container">
+              <EmployeeOnDesk employee={employees[8]}/>
+              <EmployeeOnDesk employee={employees[9]}/>
+              <EmployeeOnDesk employee={employees[10]}/>
+            </div>
           </div>
-          <div className="desk-flex-container">
-            <EmployeeOnDesk employee={employees[8]}/>
-            <EmployeeOnDesk employee={employees[9]}/>
-            <EmployeeOnDesk employee={employees[10]}/>
+          <div className="table-flex-block">
+            <h1 className="text-center">{tables[2].department}</h1>
+            <div className="desk-flex-container">
+              <EmployeeOnDesk employee={employees[11]}/>
+              <EmployeeOnDesk employee={employees[12]}/>
+              <EmployeeOnDesk employee={employees[13]}/>
+            </div>
+            <div className="desk-flex-container">
+              <EmployeeOnDesk employee={employees[14]}/>
+              <EmployeeOnDesk employee={employees[15]}/>
+              <EmployeeOnDesk employee={employees[0]}/>
+            </div>
           </div>
-        </div>
-
-        <div className="table-flex-block">
-          <h1 className="text-center">{tables[1].department}</h1>
-          <div className="desk-flex-container">
-            <EmployeeOnDesk employee={employees[5]}/>
-            <EmployeeOnDesk employee={employees[6]}/>
-            <EmployeeOnDesk employee={employees[28]}/>
+          <div className="table-flex-block">
+            <h1 className="text-center">{tables[3].department}</h1>
+            <div className="desk-flex-container">
+              <EmployeeOnDesk employee={employees[17]}/>
+              <EmployeeOnDesk employee={employees[18]}/>
+              <EmployeeOnDesk employee={employees[19]}/>
+            </div>
+            <div className="desk-flex-container">
+              <EmployeeOnDesk employee={employees[20]}/>
+              <EmployeeOnDesk employee={employees[21]}/>
+              <EmployeeOnDesk employee={employees[22]}/>
+            </div>
           </div>
-          <div className="desk-flex-container">
-            <EmployeeOnDesk employee={employees[8]}/>
-            <EmployeeOnDesk employee={employees[9]}/>
-            <EmployeeOnDesk employee={employees[10]}/>
+          <div className="table-flex-block">
+            <h1 className="text-center">{tables[4].department}</h1>
+            <div className="desk-flex-container">
+              <EmployeeOnDesk employee={employees[23]}/>
+              <EmployeeOnDesk employee={employees[24]}/>
+              <EmployeeOnDesk employee={employees[25]}/>
+            </div>
+            <div className="desk-flex-container">
+              <EmployeeOnDesk employee={employees[26]}/>
+              <EmployeeOnDesk employee={employees[27]}/>
+              <EmployeeOnDesk employee={employees[32]}/>
+            </div>
           </div>
-        </div>
-        <div className="table-flex-block">
-          <h1 className="text-center">{tables[2].department}</h1>
-          <div className="desk-flex-container">
-            <EmployeeOnDesk employee={employees[11]}/>
-            <EmployeeOnDesk employee={employees[12]}/>
-            <EmployeeOnDesk employee={employees[13]}/>
-          </div>
-          <div className="desk-flex-container">
-            <EmployeeOnDesk employee={employees[14]}/>
-            <EmployeeOnDesk employee={employees[15]}/>
-            <EmployeeOnDesk employee={employees[0]}/>
-          </div>
-        </div>
-        <div className="table-flex-block">
-          <h1 className="text-center">{tables[3].department}</h1>
-          <div className="desk-flex-container">
-            <EmployeeOnDesk employee={employees[17]}/>
-            <EmployeeOnDesk employee={employees[18]}/>
-            <EmployeeOnDesk employee={employees[19]}/>
-          </div>
-          <div className="desk-flex-container">
-            <EmployeeOnDesk employee={employees[20]}/>
-            <EmployeeOnDesk employee={employees[21]}/>
-            <EmployeeOnDesk employee={employees[22]}/>
-          </div>
-        </div>
-        <div className="table-flex-block">
-          <h1 className="text-center">{tables[4].department}</h1>
-          <div className="desk-flex-container">
-            <EmployeeOnDesk employee={employees[23]}/>
-            <EmployeeOnDesk employee={employees[24]}/>
-            <EmployeeOnDesk employee={employees[25]}/>
-          </div>
-          <div className="desk-flex-container">
-            <EmployeeOnDesk employee={employees[26]}/>
-            <EmployeeOnDesk employee={employees[27]}/>
-            <EmployeeOnDesk employee={employees[32]}/>
-          </div>
-        </div>
-        <div className="table-flex-block">
-          <h1 className="text-center">{tables[5].department}</h1>
-          <div className="desk-flex-container">
-            <EmployeeOnDesk employee={employees[29]}/>
-            <EmployeeOnDesk employee={employees[30]}/>
-            <EmployeeOnDesk employee={employees[31]}/>
-          </div>
-          <div className="desk-flex-container">
-            <EmployeeOnDesk employee={employees[0]}/>
-            <EmployeeOnDesk employee={employees[0]}/>
-            <EmployeeOnDesk employee={employees[0]}/>
+          <div className="table-flex-block">
+            <h1 className="text-center">{tables[5].department}</h1>
+            <div className="desk-flex-container">
+              <EmployeeOnDesk employee={employees[29]}/>
+              <EmployeeOnDesk employee={employees[30]}/>
+              <EmployeeOnDesk employee={employees[31]}/>
+            </div>
+            <div className="desk-flex-container">
+              <EmployeeOnDesk employee={employees[0]}/>
+              <EmployeeOnDesk employee={employees[0]}/>
+              <EmployeeOnDesk employee={employees[0]}/>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     );
   }
 }
 
-render(<OfficeRoom />, document.getElementById('root'));
+render(<OfficeRoom/>, document.getElementById('root'));
