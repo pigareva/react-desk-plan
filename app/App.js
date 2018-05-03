@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 
 let employees = [
   {
-    "_id": "",
+    "_id": "99",
     "department": "Working students",
     "name": "",
     "email": "",
@@ -226,175 +226,6 @@ let employees = [
   },
 ];
 
-let tables = [
-  {
-    "_id": "01",
-    "department": "Founder, HR & Finance",
-    "desks": [
-      {
-        "_id": "1",
-        "idEmployee": "01",
-      },
-      {
-        "_id": "2",
-        "idEmployee": "02",
-      },
-      {
-        "_id": "3",
-        "idEmployee": "03",
-      },
-      {
-        "_id": "4",
-        "idEmployee": "04",
-      }],
-  },
-  {
-    "_id": "02",
-    "department": "Tech",
-    "desks": [
-      {
-        "_id": "1",
-        "idEmployee": "05",
-      },
-      {
-        "_id": "2",
-        "idEmployee": "06",
-      },
-      {
-        "_id": "3",
-        "idEmployee": "07",
-      },
-      {
-        "_id": "4",
-        "idEmployee": "08",
-      },
-      {
-        "_id": "5",
-        "idEmployee": "09",
-      },
-      {
-        "_id": "6",
-        "idEmployee": "10",
-      }],
-  },
-  {
-    "_id": "03",
-    "department": "B2B Sales",
-    "desks": [
-      {
-        "_id": "1",
-        "idEmployee": "11",
-      },
-      {
-        "_id": "2",
-        "idEmployee": "12",
-      },
-      {
-        "_id": "3",
-        "idEmployee": "13",
-      },
-      {
-        "_id": "4",
-        "idEmployee": "14",
-      },
-      {
-        "_id": "5",
-        "idEmployee": "15",
-      },
-      {
-        "_id": "6",
-        "idEmployee": "16",
-      }],
-  },
-  {
-    "_id": "04",
-    "department": "Customer care",
-    "desks": [
-      {
-        "_id": "1",
-        "idEmployee": "17",
-      },
-      {
-        "_id": "2",
-        "idEmployee": "18",
-      },
-      {
-        "_id": "3",
-        "idEmployee": "19",
-      },
-      {
-        "_id": "4",
-        "idEmployee": "20",
-      },
-      {
-        "_id": "5",
-        "idEmployee": "21",
-      },
-      {
-        "_id": "6",
-        "idEmployee": "22",
-      }],
-  },
-  {
-    "_id": "05",
-    "department": "Product Team",
-    "desks": [
-      {
-        "_id": "1",
-        "idEmployee": "23",
-      },
-      {
-        "_id": "2",
-        "idEmployee": "24",
-      },
-      {
-        "_id": "3",
-        "idEmployee": "25",
-      },
-      {
-        "_id": "4",
-        "idEmployee": "26",
-      },
-      {
-        "_id": "5",
-        "idEmployee": "27",
-      },
-      {
-        "_id": "6",
-        "idEmployee": "28",
-      }],
-  },
-  {
-    "_id": "06",
-    "department": "Marketing",
-    "desks": [
-      {
-        "_id": "1",
-        "idEmployee": "29",
-      },
-      {
-        "_id": "2",
-        "idEmployee": "30",
-      },
-      {
-        "_id": "3",
-        "idEmployee": "31",
-      },
-      {
-        "_id": "4",
-        "idEmployee": "28",
-      },
-      {
-        "_id": "5",
-        "idEmployee": null,
-      },
-      {
-        "_id": "6",
-        "idEmployee": null,
-      }],
-  },
-];
-
 function getDepartmentsList() {
   const departments = [];
   employees.forEach((employee) => {
@@ -425,26 +256,12 @@ function getDepartmentsWithEmployees() {
 }
 
 function getTables() {
-  const tab = [];
-  const departments = getDepartmentsList();
-
-  departments.forEach((department, i) => {
-    const table = {
-      _id: i + 1,
-      department: department,
-      desks: [],
-    };
-    tab.push(table);
-  });
-
-  employees.forEach((employee, i) => {
-    console.log('EMPLOYEE', employee, i);
-    tab.find((table) => {
-      return table.department === employee.department;
-    }).desks.push(employee)
-  });
-
-  return tab;
+  const tables = [];
+  const departmentsWithEmployees = getDepartmentsWithEmployees();
+  for (let department in departmentsWithEmployees) {
+    tables.push(departmentsWithEmployees[department]);
+  }
+  return tables;
 }
 
 class Clock extends Component {
@@ -559,8 +376,7 @@ class EmployeeOnDesk extends Component {
 
 class TableWithEmployees extends Component {
   render() {
-    console.log('TableWithEmployees employees', this.props.table.employees);
-    const employeesOnTable = this.props.table.employees.map((employee) => <EmployeeOnDesk employee={employee} key={employee[_id]}/>);
+    const employeesOnTable = this.props.table.employees.map((employee) => <EmployeeOnDesk employee={employee} key={employee['_id']}/>);
 
     return (
       <div className="table-flex-block" key={this.props.table.department}>
@@ -575,6 +391,8 @@ class TableWithEmployees extends Component {
 
 class OfficeRoom extends Component {
   render() {
+    const tables = getTables().map((table) => <TableWithEmployees table={table} key={table.department}/>);
+
     return (
 
       <div className="container">
@@ -585,86 +403,7 @@ class OfficeRoom extends Component {
         </header>
 
         <div className="table-flex-container">
-
-          <div className="table-flex-block">
-            <h1 className="text-center">{tables[0].department}</h1>
-            <div className="desk-flex-container">
-              <EmployeeOnDesk employee={employees[5]}/>
-              <EmployeeOnDesk employee={employees[6]}/>
-              <EmployeeOnDesk employee={employees[28]}/>
-            </div>
-            <div className="desk-flex-container">
-              <EmployeeOnDesk employee={employees[8]}/>
-              <EmployeeOnDesk employee={employees[9]}/>
-              <EmployeeOnDesk employee={employees[10]}/>
-            </div>
-          </div>
-
-          <div className="table-flex-block">
-            <h1 className="text-center">{tables[1].department}</h1>
-            <div className="desk-flex-container">
-              <EmployeeOnDesk employee={employees[5]}/>
-              <EmployeeOnDesk employee={employees[6]}/>
-              <EmployeeOnDesk employee={employees[28]}/>
-            </div>
-            <div className="desk-flex-container">
-              <EmployeeOnDesk employee={employees[8]}/>
-              <EmployeeOnDesk employee={employees[9]}/>
-              <EmployeeOnDesk employee={employees[10]}/>
-            </div>
-          </div>
-          <div className="table-flex-block">
-            <h1 className="text-center">{tables[2].department}</h1>
-            <div className="desk-flex-container">
-              <EmployeeOnDesk employee={employees[11]}/>
-              <EmployeeOnDesk employee={employees[12]}/>
-              <EmployeeOnDesk employee={employees[13]}/>
-            </div>
-            <div className="desk-flex-container">
-              <EmployeeOnDesk employee={employees[14]}/>
-              <EmployeeOnDesk employee={employees[15]}/>
-              <EmployeeOnDesk employee={employees[0]}/>
-            </div>
-          </div>
-          <div className="table-flex-block">
-            <h1 className="text-center">{tables[3].department}</h1>
-            <div className="desk-flex-container">
-              <EmployeeOnDesk employee={employees[17]}/>
-              <EmployeeOnDesk employee={employees[18]}/>
-              <EmployeeOnDesk employee={employees[19]}/>
-            </div>
-            <div className="desk-flex-container">
-              <EmployeeOnDesk employee={employees[20]}/>
-              <EmployeeOnDesk employee={employees[21]}/>
-              <EmployeeOnDesk employee={employees[22]}/>
-            </div>
-          </div>
-          <div className="table-flex-block">
-            <h1 className="text-center">{tables[4].department}</h1>
-            <div className="desk-flex-container">
-              <EmployeeOnDesk employee={employees[23]}/>
-              <EmployeeOnDesk employee={employees[24]}/>
-              <EmployeeOnDesk employee={employees[25]}/>
-            </div>
-            <div className="desk-flex-container">
-              <EmployeeOnDesk employee={employees[26]}/>
-              <EmployeeOnDesk employee={employees[27]}/>
-              <EmployeeOnDesk employee={employees[32]}/>
-            </div>
-          </div>
-          <div className="table-flex-block">
-            <h1 className="text-center">{tables[5].department}</h1>
-            <div className="desk-flex-container">
-              <EmployeeOnDesk employee={employees[29]}/>
-              <EmployeeOnDesk employee={employees[30]}/>
-              <EmployeeOnDesk employee={employees[31]}/>
-            </div>
-            <div className="desk-flex-container">
-              <EmployeeOnDesk employee={employees[0]}/>
-              <EmployeeOnDesk employee={employees[0]}/>
-              <EmployeeOnDesk employee={employees[0]}/>
-            </div>
-          </div>
+          {tables}
         </div>
       </div>
     );

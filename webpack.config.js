@@ -38,7 +38,7 @@ const devStyleLoaders = [
     loader: 'css',
   },
   {
-    loader: 'sass',
+    loader: 'less',
   },
 ];
 
