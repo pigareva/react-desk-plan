@@ -1,8 +1,11 @@
+const ObjectID        = require('mongodb').ObjectID;
+
 module.exports = function(app, db) {
   app.get('/employees/:id', (req, res) => {
     const id = req.params.id;
+    console.log('db', db);
     const details = { '_id': new ObjectID(id) };
-    bd.collection('employees').findOne(details, (err, result) => {
+    db.collection('employees').findOne(details, (err, result) => {
       if (err) {
         res.send({'error':'An error has occurred'});
       } else {
