@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import { Card, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 
 import '../app/style/style.scss';
 
@@ -232,7 +233,7 @@ function getDepartmentsWithEmployees() {
   employees.forEach((employee) => {
     const department = employee.department;
 
-    if (Object.prototype.hasOwnProperty.call(departmentIndex, 'department')) {
+    if (departmentIndex[department]) {
       departmentIndex[department].employees.push(employee);
     } else {
       departmentIndex[department] = {
@@ -349,17 +350,17 @@ class EmployeeOnDesk extends Component {
     const descStyle = this.state.atWork ? 'desk-flex-block desk-at-work' : 'desk-flex-block';
 
     return (
-      <div className={descStyle}>
-        <ul>
-          <li><b><a href={`mailto:${this.props.employee.email}`}>{this.props.employee.name}</a></b></li>
-          <li>{this.props.employee.department}</li>
-        </ul>
-        <button onClick={this.toggleEmployeeOnDesk}>
-          {/* // ToDo I'm working since */}
-          {this.state.atWork ? 'I am working' : 'I am relaxing'}
-        </button>
-        <Clock time={0} isOff={this.state.timerIsOff} />
-      </div>
+      <Card className={descStyle}>
+        <CardBody>
+          <CardTitle><a href={`mailto:${this.props.employee.email}`}>{this.props.employee.name}</a></CardTitle>
+          <CardSubtitle>{this.props.employee.department}</CardSubtitle>
+        </CardBody>
+          <Button onClick={this.toggleEmployeeOnDesk}>
+            {/* // ToDo I'm working since */}
+            {this.state.atWork ? 'I am working' : 'I am relaxing'}
+          </Button>
+          <Clock time={0} isOff={this.state.timerIsOff} />
+      </Card>
     );
   }
 }
