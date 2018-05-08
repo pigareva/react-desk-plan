@@ -5,6 +5,9 @@ import { Card, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 import '../app/style/style.scss';
 
 function getDepartmentsList(employees) {
+  if (!employees) {
+    throw new TypeError('`employees` is not defined')
+  }
   const departments = [];
   employees.forEach((employee) => {
     if (!departments.includes(employee.department)) {
@@ -15,6 +18,9 @@ function getDepartmentsList(employees) {
 }
 
 function getDepartmentsWithEmployees(employees) {
+  if (!employees) {
+    throw new TypeError('`employees` is not defined')
+  }
   const departmentIndex = {};
 
   employees.forEach((employee) => {
@@ -34,6 +40,9 @@ function getDepartmentsWithEmployees(employees) {
 }
 
 function getTables(departmentIndex) {
+  if (!employees) {
+    throw new TypeError('`departmentIndex` is not defined')
+  }
   const tables = [];
   for (let department in departmentIndex) {
     tables.push(departmentIndex[department]);
