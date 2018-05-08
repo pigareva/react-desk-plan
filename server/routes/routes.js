@@ -14,7 +14,7 @@ module.exports = function(app, db) {
   });
 
   app.get('/employees/', (req, res) => {
-    db.collection('employees').find({},(err, result) => {
+    db.collection('employees').find().toArray((err, result) => {
       if (err) {
         res.send({'error':'An error has occurred'});
       } else {
