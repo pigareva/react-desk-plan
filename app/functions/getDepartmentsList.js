@@ -1,3 +1,9 @@
+/**
+ * Returns a list of departments.
+ *
+ * @param {Array} employees
+ * @return {Array}
+ */
 export default function getDepartmentsList(employees) {
   if (!employees) {
     throw new TypeError('`employees` is not defined')
