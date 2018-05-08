@@ -3,6 +3,7 @@ import getDepartmentsWithEmployees from '../functions/getDepartmentsWithEmployee
 import getTables from '../functions/getTables';
 import Clock from './Clock';
 import TableWithEmployees from './TableWithEmployees';
+import { URL_GET_ALL_EMPLOYEES } from '../consts';
 
 export default class OfficeRoom extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ export default class OfficeRoom extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:8000/employees")
+    fetch(URL_GET_ALL_EMPLOYEES)
       .then(res => res.json())
       .then(
         (result) => {
