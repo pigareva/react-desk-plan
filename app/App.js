@@ -35,9 +35,8 @@ function getDepartmentsWithEmployees(employees) {
 
 function getTables(departmentIndex) {
   const tables = [];
-  const departmentsWithEmployees = departmentIndex;
-  for (let department in departmentsWithEmployees) {
-    tables.push(departmentsWithEmployees[department]);
+  for (let department in departmentIndex) {
+    tables.push(departmentIndex[department]);
   }
   return tables;
 }
