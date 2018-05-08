@@ -1,3 +1,5 @@
+$min-width: 900px;
+
 #root{
 
   .lato {
@@ -7,13 +9,54 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  @keyframes header-background {
+    from {
+      background-color: darkgrey;
+    }
+    50% {
+      background-color: #f1ff0e;
+    }
+    to {
+      background-color: darkgrey;
+    }
+  }
+
   header {
     width: 100%;
     min-height: 50px;
-    min-width: 900px;
-    background-color: #2C577D;
+    min-width: $min-width;
+    background-color: darkgrey;
     color: #F6F6F6;
+    position: relative;
+    animation: header-background 54s linear;
   }
+
+    @keyframes sun {
+      from {
+        left: 25px;
+        bottom: 8px;
+      }
+      25% {bottom: 30px}
+      50% {bottom: 50px}
+      75% {bottom: 30px}
+      to {
+        left: 900px;
+        bottom: 8px;
+      }
+    }
+
+    .sun-box {
+      position: absolute;
+      color: #f1ff0e;
+      text-shadow: 0 0 5px black;
+      bottom: 0;
+      animation: sun 54s linear;
+
+      .sun-symbol {
+        position: relative;
+        font-size: 20px;
+      }
+     }
 
   .desk-flex-container {
     display: flex;
@@ -31,9 +74,6 @@
        min-height: 100px;
        align-content: space-around;
        margin-bottom: 20px;
-       ul {
-         list-style: none;
-       }
      }
 
   .desk-at-work {

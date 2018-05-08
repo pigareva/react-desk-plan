@@ -391,6 +391,9 @@ class OfficeRoom extends Component {
       <div className="container">
         <header>
           <h1 className="text-center">Desk plan</h1>
+                <div className="sun-box">
+                  <span className="sun-symbol">☀</span>
+                </div>
           <p>Local time is</p>
           <Clock time={540} isGreetingNeeded />
         </header>
