@@ -3,9 +3,18 @@ const ObjectID        = require('mongodb').ObjectID;
 module.exports = function(app, db) {
   app.get('/employees/:id', (req, res) => {
     const id = req.params.id;
-    console.log('db', db);
     const details = { '_id': new ObjectID(id) };
     db.collection('employees').findOne(details, (err, result) => {
+      if (err) {
+        res.send({'error':'An error has occurred'});
+      } else {
+        res.send(result);
+      }
+    })
+  });
+
+  app.get('/employees/', (req, res) => {
+    db.collection('employees').find({},(err, result) => {
       if (err) {
         res.send({'error':'An error has occurred'});
       } else {
@@ -25,7 +34,7 @@ module.exports = function(app, db) {
     });
   });
 
-  app.put ('/employees/:id', (req, res) => {
+  app.put('/employees/:id', (req, res) => {
     const id = req.params.id;
     const details = { '_id': new ObjectID(id) };
     const employee = { department: req.body.department, name: req.body.name, email: req.body.email };
