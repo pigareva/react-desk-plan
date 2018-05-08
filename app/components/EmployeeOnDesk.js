@@ -10,7 +10,9 @@ export default class EmployeeOnDesk extends Component {
     this.toggleEmployeeOnDesk = this.toggleEmployeeOnDesk.bind(this);
     this.deleteEmployee = this.deleteEmployee.bind(this);
     this.editEmployee = this.editEmployee.bind(this);
-    this.state = { atWork: true, timeAtWork: 0, timerIsOff: false, employee: this.props.employee };
+    this.state = {
+      atWork: true, timeAtWork: 0, timerIsOff: false, employee: this.props.employee,
+    };
   }
 
   componentDidMount() {
@@ -33,23 +35,25 @@ export default class EmployeeOnDesk extends Component {
     }
   }
 
-  deleteEmployee () {
+  deleteEmployee() {
     // ToDo check if rendered
     const id = this.state.employee.id;
     // ToDO request
-    this.setState({ employee: {
+    this.setState({
+      employee: {
         name: 'I am not there nay more',
         department: '',
         email: '',
-        photo:'',
-      }})
+        photo: '',
+      },
+    });
   }
 
   editEmployee() {
     // ToDo check if rendered
     const id = this.state.employee.id;
     // const employee = request;
-    this.setState({ employee })
+    this.setState({ employee });
   }
 
   render() {
@@ -66,10 +70,10 @@ export default class EmployeeOnDesk extends Component {
         </Button>
         <ButtonGroup>
           <Button onClick={this.deleteEmployee}>
-            <span className="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            <span className="glyphicon glyphicon-trash" aria-hidden="true" />
           </Button>
           <Button onClick={this.editEmployee}>
-            <span className="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            <span className="glyphicon glyphicon-edit" aria-hidden="true" />
           </Button>
         </ButtonGroup>
 

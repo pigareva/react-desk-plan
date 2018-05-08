@@ -6,10 +6,10 @@
  */
 export default function getTables(departmentIndex) {
   if (!departmentIndex) {
-    throw new TypeError('`departmentIndex` is not defined')
+    throw new TypeError('`departmentIndex` is not defined');
   }
   const tables = [];
-  for (let department in departmentIndex) {
+  for (const department in departmentIndex) {
     tables.push(departmentIndex[department]);
   }
   return tables;

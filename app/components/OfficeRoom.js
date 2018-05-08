@@ -8,11 +8,13 @@ import { URL_GET_ALL_EMPLOYEES } from '../consts';
 export default class OfficeRoom extends Component {
   constructor(props) {
     super(props);
-    this.state = { employees: {
+    this.state = {
+      employees: {
         error: null,
         isLoaded: false,
-        employees: []
-      }};
+        employees: [],
+      },
+    };
   }
 
   componentDidMount() {
@@ -20,18 +22,22 @@ export default class OfficeRoom extends Component {
       .then(res => res.json())
       .then(
         (result) => {
-          this.setState({ employees: {
+          this.setState({
+            employees: {
               isLoaded: true,
-              employees: result
-            }});
+              employees: result,
+            },
+          });
         },
         (error) => {
-          this.setState({ employees: {
+          this.setState({
+            employees: {
               isLoaded: true,
-              error
-            }});
-        }
-      )
+              error,
+            },
+          });
+        },
+      );
   }
 
   render() {

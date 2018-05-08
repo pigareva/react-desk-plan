@@ -6,7 +6,7 @@
  */
 export default function getDepartmentsWithEmployees(employees) {
   if (!employees) {
-    throw new TypeError('`employees` is not defined')
+    throw new TypeError('`employees` is not defined');
   }
   const departmentIndex = {};
 
