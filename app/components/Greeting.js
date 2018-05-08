@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 
 export default class Greeting extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const hh = this.state.time / 60;
     switch (true) {

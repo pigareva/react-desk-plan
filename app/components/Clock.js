@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class Clock extends Component {
   constructor(props) {
@@ -41,3 +42,8 @@ export default class Clock extends Component {
     );
   }
 }
+
+Clock.propTypes = {
+  time: PropTypes.number.isRequired,
+  isGreetingNeeded: PropTypes.bool.isRequired,
+};

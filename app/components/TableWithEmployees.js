@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import EmployeeOnDesk from './EmployeeOnDesk';
 
 export default class TableWithEmployees extends Component {
@@ -16,3 +17,7 @@ export default class TableWithEmployees extends Component {
     );
   }
 }
+
+TableWithEmployees.propTypes = {
+  table: PropTypes.object.isRequired,
+};

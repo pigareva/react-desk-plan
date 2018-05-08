@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardBody, CardTitle, CardSubtitle, Button, ButtonGroup } from 'reactstrap';
 import Clock from './Clock';
+import PropTypes from 'prop-types';
 
 export default class EmployeeOnDesk extends Component {
   constructor(props) {
@@ -52,7 +53,7 @@ export default class EmployeeOnDesk extends Component {
   editEmployee() {
     // ToDo check if rendered
     const id = this.state.employee.id;
-    // const employee = request;
+    const employee = { name: 'New' };
     this.setState({ employee });
   }
 
@@ -82,3 +83,7 @@ export default class EmployeeOnDesk extends Component {
     );
   }
 }
+
+EmployeeOnDesk.propTypes = {
+  employee: PropTypes.object.isRequired,
+};
