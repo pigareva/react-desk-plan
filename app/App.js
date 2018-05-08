@@ -40,7 +40,7 @@ function getDepartmentsWithEmployees(employees) {
 }
 
 function getTables(departmentIndex) {
-  if (!employees) {
+  if (!departmentIndex) {
     throw new TypeError('`departmentIndex` is not defined')
   }
   const tables = [];
@@ -207,11 +207,11 @@ class OfficeRoom extends Component {
 
   render() {
     const { error, isLoaded, employees } = this.state.employees;
-    const tables = getTables(getDepartmentsWithEmployees(employees))
-      .map(table => <TableWithEmployees table={table} key={table.department} />);
+    const body = error ? <div>Error: {error.message}</div> :
+        getTables(getDepartmentsWithEmployees(employees))
+          .map(table => <TableWithEmployees table={table} key={table.department} />);
 
     return (
-
       <div className="container">
         <header>
           <h1 className="text-center">Desk plan</h1>
@@ -221,9 +221,8 @@ class OfficeRoom extends Component {
           <p>Local time is</p>
           <Clock time={540} isGreetingNeeded />
         </header>
-
         <div className="table-flex-container">
-          {tables}
+          {body}
         </div>
       </div>
     );
