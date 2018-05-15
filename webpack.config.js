@@ -35,7 +35,7 @@ const plugins = [
 // });
 
 module.exports = {
-  entry: path.resolve(__dirname, 'app/App.js'),
+  entry: path.resolve(__dirname, 'app/App.jsx'),
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'public/'),
@@ -53,7 +53,7 @@ module.exports = {
   // Define where to look for a plugin
   resolve: {
     modules: ['node_modules'],
-    extensions: ['.js', '*'],
+    extensions: ['.js', '.jsx', '*'],
   },
 
   // Define where to look for a webpack loader
@@ -85,10 +85,9 @@ module.exports = {
         use:  [ 'style', 'css', 'sass' ]
       },
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-        query: { presets: ['env', 'react'] },
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
