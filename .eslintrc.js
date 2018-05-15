@@ -7,6 +7,5 @@ module.exports = {
         "no-unused-vars": 1,
         "prefer-destructuring": 1,
         "react/prefer-stateless-function": 1,
-        "react/forbid-prop-types": 0,
     }
 };
