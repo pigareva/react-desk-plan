@@ -1,18 +1,23 @@
-const express        = require('express');
-const MongoClient    = require('mongodb').MongoClient;
-const bodyParser     = require('body-parser');
-const db             = require('./db/db');
-const cors           = require('cors');
-const app            = express();
+const express = require('express');
+const app = express();
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
-app.use(cors(), bodyParser.urlencoded({ extended: true }));
+const PORT = 8000;
+const config = require('./db/db');
+const EmployeesRouter = require('./routes/routes');
 
-const port = 8000;
-
-MongoClient.connect(db.url, (err, database) => {
-  if (err) return console.log(err);
-  require('./routes')(app, database.db('employees'));
-  app.listen(port, () => {
-    console.log('We are live on ' + port);
+mongoose.connect(config.db).then(
+  () => {console.log('Database is connected') },
+  err => { console.log('Can not connect to the database' + err)
   });
+
+app.use(cors());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.use('/employees', EmployeesRouter);
+
+app.listen(PORT, function(){
+  console.log('Server is running on Port: ', PORT);
 });

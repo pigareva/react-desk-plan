@@ -1,61 +1,62 @@
-const ObjectID        = require('mongodb').ObjectID;
+const express = require('express');
+const EmployeesRouter = express.Router();
 
-module.exports = function(app, db) {
-  app.get('/employees/:id', (req, res) => {
-    const id = req.params.id;
-    const details = { '_id': new ObjectID(id) };
-    db.collection('employees').findOne(details, (err, result) => {
-      if (err) {
-        res.send({'error':'An error has occurred'});
-      } else {
-        res.send(result);
-      }
+const Employees = require('../models/employees');
+
+EmployeesRouter.route('/create').post(function (req, res) {
+  const employees = new Employees(req.body);
+  employees.save()
+    .then(employee => {
+      res.json(employee);
     })
-  });
-
-  app.get('/employees/', (req, res) => {
-    db.collection('employees').find().toArray((err, result) => {
-      if (err) {
-        res.send({'error':'An error has occurred'});
-      } else {
-        res.send(result);
-      }
-    })
-  });
-
-  app.post('/employees', (req, res) => {
-    const employee = { department: req.body.department, name: req.body.name, email: req.body.email };
-    db.collection('employees').insert(employee, (err, result) => {
-      if (err) {
-        res.send({ 'error': 'An error has occurred' });
-      } else {
-        res.send(result.ops[0]);
-      }
+    .catch(err => {
+      res.status(400).send('unable to save to database');
     });
-  });
+});
 
-  app.put('/employees/:id', (req, res) => {
-    const id = req.params.id;
-    const details = { '_id': new ObjectID(id) };
-    const employee = { department: req.body.department, name: req.body.name, email: req.body.email };
-    db.collection('notes').update(details, employee, (err, result) => {
-      if (err) {
-        res.send({'error':'An error has occurred'});
-      } else {
-        res.send(employee);
-      }
-    });
+EmployeesRouter.route('/').get(function (req, res) {
+  Employees.find((err, employee) => {
+    if(err){
+      console.log(err);
+    }
+    else {
+      res.json(employee);
+    }
   });
+});
 
-  app.delete('/employees/:id', (req, res) => {
-    const id = req.params.id;
-    const details = { '_id': new ObjectID(id) };
-    db.collection('employees').remove(details, (err, item) => {
-      if (err) {
-        res.send({'error':'An error has occurred'});
-      } else {
-        res.send(`Employee ${id} deleted`);
-      }
-    });
+EmployeesRouter.route('/get/:id').get(function (req, res) {
+  const id = req.params.id;
+  Employees.findById(id, (err, employee) => {
+    res.json(employee);
   });
-};
+});
+
+EmployeesRouter.route('/update/:id').post(function (req, res) {
+  Employees.findById(req.params.id, (err, employee) => {
+    if (!employee)
+      return next(new Error('Could not load Document'));
+    else {
+      employee.name = req.body.name;
+      employee.department = req.body.department;
+      employee.email = `${req.body.name}@pigareva.cc`;
+      employee.photo = req.body.photo;
+
+      employee.save().then(employee => {
+        res.json(employee);
+      })
+        .catch(err => {
+          res.status(400).send("unable to update the database");
+        });
+    }
+  });
+});
+
+EmployeesRouter.route('/delete/:id').get(function (req, res) {
+  Employees.findByIdAndRemove({_id: req.params.id}, (err, employee) => {
+      if(err) res.json(err);
+      else res.json('Successfully removed');
+    });
+});
+
+module.exports = EmployeesRouter;
