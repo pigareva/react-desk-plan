@@ -1,5 +1,5 @@
 /**
- * Returns an indexed departments.
+ * Returns indexed departments.
  *
  * @param {Array} employees
  * @return {Object}
