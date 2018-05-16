@@ -11,7 +11,7 @@ export default function getDepartmentsWithEmployees(employees) {
   const departmentIndex = {};
 
   employees.forEach((employee) => {
-    const department = employee.department;
+    const { department } = employee;
 
     if (departmentIndex[department]) {
       departmentIndex[department].employees.push(employee);
