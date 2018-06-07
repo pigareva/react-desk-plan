@@ -12,6 +12,7 @@ export default class EmployeeOnDesk extends Component {
     this.toggleEmployeeOnDesk = this.toggleEmployeeOnDesk.bind(this);
     this.deleteEmployee = this.deleteEmployee.bind(this);
     this.editEmployee = this.editEmployee.bind(this);
+    this.addEmployee = this.addEmployee.bind(this);
     this.state = {
       atWork: true,
       timeAtWork: 0,
@@ -56,8 +57,8 @@ export default class EmployeeOnDesk extends Component {
           () => {
             this.setState({
               employee: {
-                name: 'I am not there any more',
-                department: '',
+                name: '',
+                department: 'I am not there any more',
                 email: '',
                 photo: '',
               },
@@ -71,12 +72,15 @@ export default class EmployeeOnDesk extends Component {
     }
   }
 
-
   editEmployee() {
     // ToDo check if rendered
     const id = this.state.employee.id;
     const employee = { name: 'New' };
     this.setState({ employee });
+  }
+
+  addEmployee() {
+    // ToDo
   }
 
   get email() {
@@ -93,6 +97,7 @@ export default class EmployeeOnDesk extends Component {
 
   render() {
     const descStyle = this.state.atWork ? 'desk-flex-block desk-at-work' : 'desk-flex-block';
+    const isEmployee = this.state.employee.name;
 
     return (
       <Card className={descStyle}>
@@ -100,19 +105,26 @@ export default class EmployeeOnDesk extends Component {
           <CardTitle><a href={`mailto:${this.email}`}>{this.name}</a></CardTitle>
           <CardSubtitle>{this.department}</CardSubtitle>
         </CardBody>
-        <Button onClick={this.toggleEmployeeOnDesk}>
+        { isEmployee && <Button onClick={this.toggleEmployeeOnDesk}>
           {this.state.atWork ? 'I am working' : 'I am relaxing'}
         </Button>
-        <ButtonGroup>
-          <Button onClick={this.deleteEmployee}>
-            <span className="glyphicon glyphicon-trash" aria-hidden="true" />
-          </Button>
-          <Button onClick={this.editEmployee}>
-            <span className="glyphicon glyphicon-edit" aria-hidden="true" />
-          </Button>
-        </ButtonGroup>
+        }
 
-        <Clock time={0} isOff={this.state.timerIsOff} />
+        {isEmployee ?
+          <ButtonGroup>
+            <Button onClick={this.deleteEmployee}>
+              <span className="glyphicon glyphicon-trash" aria-hidden="true"/>
+            </Button>
+            <Button onClick={this.editEmployee}>
+              <span className="glyphicon glyphicon-edit" aria-hidden="true"/>
+            </Button>
+          </ButtonGroup> :
+          <Button onClick={this.addEmployee}>
+            <span className="glyphicon glyphicon-plus" aria-hidden="true"/>
+          </Button>
+        }
+
+        {isEmployee && <Clock time={0} isOff={this.state.timerIsOff} />}
       </Card>
     );
   }
