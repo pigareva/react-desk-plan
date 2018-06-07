@@ -57,14 +57,26 @@ export default class EmployeeOnDesk extends Component {
     this.setState({ employee });
   }
 
+  get email() {
+    return this.state.employee.email;
+  }
+
+  get name() {
+    return this.state.employee.name;
+  }
+
+  get department() {
+    return this.state.employee.department;
+  }
+
   render() {
     const descStyle = this.state.atWork ? 'desk-flex-block desk-at-work' : 'desk-flex-block';
 
     return (
       <Card className={descStyle}>
         <CardBody>
-          <CardTitle><a href={`mailto:${this.state.employee.email}`}>{this.state.employee.name}</a></CardTitle>
-          <CardSubtitle>{this.state.employee.department}</CardSubtitle>
+          <CardTitle><a href={`mailto:${this.email}`}>{this.name}</a></CardTitle>
+          <CardSubtitle>{this.department}</CardSubtitle>
         </CardBody>
         <Button onClick={this.toggleEmployeeOnDesk}>
           {this.state.atWork ? 'I am working' : 'I am relaxing'}
