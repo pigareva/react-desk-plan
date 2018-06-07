@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Card, CardBody, CardTitle, CardSubtitle, Button, ButtonGroup } from 'reactstrap';
 import Clock from './Clock';
 import PropTypes from 'prop-types';
+import { URL_DELETE_EMPLOYEE } from '../consts';
 
 export default class EmployeeOnDesk extends Component {
   constructor(props) {
@@ -38,17 +39,32 @@ export default class EmployeeOnDesk extends Component {
 
   deleteEmployee() {
     // ToDo check if rendered
-    const id = this.state.employee.id;
-    // ToDO request
-    this.setState({
-      employee: {
-        name: 'I am not there nay more',
-        department: '',
-        email: '',
-        photo: '',
-      },
-    });
+    const id = this.state.employee._id;
+    const url = `${URL_DELETE_EMPLOYEE}${id}`;
+
+    fetch(url)
+      .then(res => {
+        console.log('res', res);
+        res.json();
+      })
+      .then(
+        () => {
+          this.setState({
+            employee: {
+              name: 'I am not there any more',
+              department: '',
+              email: '',
+              photo: '',
+            },
+            atWork: false,
+          });
+        },
+        (error) => {
+          // ToDo
+        },
+      );
   }
+
 
   editEmployee() {
     // ToDo check if rendered

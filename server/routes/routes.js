@@ -26,14 +26,15 @@ EmployeesRouter.route('/').get(function (req, res) {
 });
 
 EmployeesRouter.route('/get/:id').get(function (req, res) {
-  const id = req.params.id;
+  const id = req.params.id.slice(1);
   Employees.findById(id, (err, employee) => {
     res.json(employee);
   });
 });
 
 EmployeesRouter.route('/update/:id').post(function (req, res) {
-  Employees.findById(req.params.id, (err, employee) => {
+  const id = req.params.id.slice(1);
+  Employees.findById(id, (err, employee) => {
     if (!employee)
       return next(new Error('Could not load Document'));
     else {
@@ -53,7 +54,8 @@ EmployeesRouter.route('/update/:id').post(function (req, res) {
 });
 
 EmployeesRouter.route('/delete/:id').get(function (req, res) {
-  Employees.findByIdAndRemove({_id: req.params.id}, (err, employee) => {
+  const id = req.params.id.slice(1);
+  Employees.findByIdAndRemove(id, (err, employee) => {
       if(err) res.json(err);
       else res.json('Successfully removed');
     });
