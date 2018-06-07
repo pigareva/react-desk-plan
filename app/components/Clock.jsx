@@ -45,5 +45,5 @@ export default class Clock extends Component {
 
 Clock.propTypes = {
   time: PropTypes.number.isRequired,
-  isGreetingNeeded: PropTypes.bool.isRequired,
+  isGreetingNeeded: PropTypes.bool,
 };
