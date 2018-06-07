@@ -13,12 +13,17 @@ export default class EmployeeOnDesk extends Component {
     this.deleteEmployee = this.deleteEmployee.bind(this);
     this.editEmployee = this.editEmployee.bind(this);
     this.state = {
-      atWork: true, timeAtWork: 0, timerIsOff: false, employee: this.props.employee,
+      atWork: true,
+      timeAtWork: 0,
+      timerIsOff: false,
+      employee: this.props.employee,
+      isRendered: false,
     };
   }
 
   componentDidMount() {
     this.comeToOffice();
+    this.setState({ isRendered: true });
   }
 
   goHome() {
@@ -38,31 +43,32 @@ export default class EmployeeOnDesk extends Component {
   }
 
   deleteEmployee() {
-    // ToDo check if rendered
-    const id = this.state.employee._id;
-    const url = `${URL_DELETE_EMPLOYEE}${id}`;
+    if (this.state.isRendered) {
+      const id = this.state.employee._id;
+      const url = `${URL_DELETE_EMPLOYEE}${id}`;
 
-    fetch(url)
-      .then(res => {
-        console.log('res', res);
-        res.json();
-      })
-      .then(
-        () => {
-          this.setState({
-            employee: {
-              name: 'I am not there any more',
-              department: '',
-              email: '',
-              photo: '',
-            },
-            atWork: false,
-          });
-        },
-        (error) => {
-          // ToDo
-        },
-      );
+      fetch(url)
+        .then(res => {
+          console.log('res', res);
+          res.json();
+        })
+        .then(
+          () => {
+            this.setState({
+              employee: {
+                name: 'I am not there any more',
+                department: '',
+                email: '',
+                photo: '',
+              },
+              atWork: false,
+            });
+          },
+          (error) => {
+            // ToDo
+          },
+        );
+    }
   }
 
 
