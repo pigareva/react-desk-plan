@@ -6,5 +6,6 @@ module.exports = {
     "rules": {
         "no-unused-vars": 1,
         "react/prefer-stateless-function": 1,
+        "linebreak-style": 0,
     }
 };
