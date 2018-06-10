@@ -34,13 +34,14 @@ EmployeesRouter.route('/get/:id').get(function (req, res) {
 
 EmployeesRouter.route('/update/:id').post(function (req, res) {
   const id = req.params.id.slice(1);
+
   Employees.findById(id, (err, employee) => {
     if (!employee)
       return next(new Error('Could not load Document'));
     else {
       employee.name = req.body.name;
       employee.department = req.body.department;
-      employee.email = `${req.body.name}@pigareva.cc`;
+      employee.email = req.body.email;
       employee.photo = req.body.photo;
 
       employee.save().then(employee => {

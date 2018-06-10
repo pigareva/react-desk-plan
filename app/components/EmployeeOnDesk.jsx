@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Card, CardBody, CardTitle, CardSubtitle, Button, ButtonGroup } from 'reactstrap';
+import { TrashcanIcon, PencilIcon, PlusIcon } from 'react-octicons';
 import Clock from './Clock';
 import PropTypes from 'prop-types';
-import { URL_DELETE_EMPLOYEE } from '../consts';
+import { URL_DELETE_EMPLOYEE, URL_UPDATE_EMPLOYEE } from '../consts';
+import EditEmployee from './EditEmployee';
+
 
 export default class EmployeeOnDesk extends Component {
   constructor(props) {
@@ -19,6 +22,7 @@ export default class EmployeeOnDesk extends Component {
       timerIsOff: false,
       employee: this.props.employee,
       isRendered: false,
+      showEdit: false,
     };
   }
 
@@ -46,11 +50,9 @@ export default class EmployeeOnDesk extends Component {
   deleteEmployee() {
     if (this.state.isRendered) {
       const id = this.state.employee._id;
-      const url = `${URL_DELETE_EMPLOYEE}${id}`;
 
-      fetch(url)
+      fetch(`${URL_DELETE_EMPLOYEE}${id}`)
         .then(res => {
-          console.log('res', res);
           res.json();
         })
         .then(
@@ -66,17 +68,14 @@ export default class EmployeeOnDesk extends Component {
             });
           },
           (error) => {
-            // ToDo
+            //ToDo
           },
         );
     }
   }
 
   editEmployee() {
-    // ToDo check if rendered
-    const id = this.state.employee.id;
-    const employee = { name: 'New' };
-    this.setState({ employee });
+    this.setState({ showEdit: true });
   }
 
   addEmployee() {
@@ -96,36 +95,43 @@ export default class EmployeeOnDesk extends Component {
   }
 
   render() {
+    console.log('EmployeeOnDesk employee', this.state.employee);
     const descStyle = this.state.atWork ? 'desk-flex-block desk-at-work' : 'desk-flex-block';
     const isEmployee = this.state.employee.name;
+    const showEdit = this.state.showEdit;
 
     return (
-      <Card className={descStyle}>
-        <CardBody>
-          <CardTitle><a href={`mailto:${this.email}`}>{this.name}</a></CardTitle>
-          <CardSubtitle>{this.department}</CardSubtitle>
-        </CardBody>
-        { isEmployee && <Button onClick={this.toggleEmployeeOnDesk}>
-          {this.state.atWork ? 'I am working' : 'I am relaxing'}
-        </Button>
-        }
-
-        {isEmployee ?
-          <ButtonGroup>
-            <Button onClick={this.deleteEmployee}>
-              <span className="glyphicon glyphicon-trash" aria-hidden="true"/>
-            </Button>
-            <Button onClick={this.editEmployee}>
-              <span className="glyphicon glyphicon-edit" aria-hidden="true"/>
-            </Button>
-          </ButtonGroup> :
-          <Button onClick={this.addEmployee}>
-            <span className="glyphicon glyphicon-plus" aria-hidden="true"/>
+      <div>
+        <Card className={descStyle}>
+          <CardBody>
+            <CardTitle><a href={`mailto:${this.email}`}>{this.name}</a></CardTitle>
+            <CardSubtitle>{this.department}</CardSubtitle>
+          </CardBody>
+          {isEmployee && <Button onClick={this.toggleEmployeeOnDesk}>
+            {this.state.atWork ? 'I am working' : 'I am relaxing'}
           </Button>
-        }
+          }
 
-        {isEmployee && <Clock time={0} isOff={this.state.timerIsOff} />}
-      </Card>
+          {isEmployee ?
+            <ButtonGroup>
+              <Button onClick={this.deleteEmployee}>
+                <TrashcanIcon/>
+              </Button>
+              <Button onClick={this.editEmployee}>
+                <PencilIcon/>
+              </Button>
+            </ButtonGroup> :
+            <Button onClick={this.addEmployee}>
+              <PlusIcon/>
+            </Button>
+          }
+
+          {isEmployee && <Clock time={0} isOff={this.state.timerIsOff}/>}
+        </Card>
+
+        {showEdit && <EditEmployee employee={this.state.employee} modal={showEdit}/>}
+
+      </div>
     );
   }
 }
