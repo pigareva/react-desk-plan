@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 
 export default class Greeting extends Component {
   render() {
-    const hh = this.state.time / 60;
+    const hh = this.prop.time / 60;
     switch (true) {
       case (hh >= 8 && hh <= 10):
-        return <h2> Good Morning! </h2>;
+        return <h2> Good morning! </h2>;
       case (hh >= 12 && hh <= 14):
         return <h2> Bon appetite! </h2>;
       case (hh >= 17 && hh <= 20):
