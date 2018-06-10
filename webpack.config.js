@@ -82,7 +82,11 @@ module.exports = {
         //     { loader: 'sass-loader' },
         //   ],
         // }),
-        use:  [ 'style', 'css', 'sass' ]
+        use: ['style', 'css', 'sass'],
+      },
+      {
+        test: /\.css$/,
+        use: ['style', 'css'],
       },
       {
         test: /\.(js|jsx)$/,
@@ -98,10 +102,10 @@ module.exports = {
   },
 
   devServer: {
-    contentBase: "./public",
+    contentBase: './public',
     hot: true,
     historyApiFallback: true,
-    inline: true
+    inline: true,
   },
 
   plugins,
