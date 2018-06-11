@@ -101,14 +101,15 @@ export default class EmployeeOnDesk extends Component {
             <CardTitle><a href={`mailto:${this.email}`}>{this.name}</a></CardTitle>
             <CardSubtitle>{this.department}</CardSubtitle>
           </CardBody>
-          {isEmployee &&
-          <Button onClick={this.toggleEmployeeOnDesk}>
-            {this.state.atWork ? 'I am working' : 'I am relaxing'}
-          </Button>
-          }
 
           {isEmployee ?
             <ButtonGroup>
+              <Button className="clock-button">
+                <Clock time={0} isOff={this.state.timerIsOff} />
+              </Button>
+              <Button onClick={this.toggleEmployeeOnDesk}>
+                {this.state.atWork ? 'I am working' : 'I am relaxing'}
+              </Button>
               <Button onClick={this.deleteEmployee}>
                 <TrashcanIcon />
               </Button>
@@ -121,7 +122,6 @@ export default class EmployeeOnDesk extends Component {
             </Button>
           }
 
-          {isEmployee && <Clock time={0} isOff={this.state.timerIsOff} />}
         </Card>
 
         {this.state.showEdit &&
