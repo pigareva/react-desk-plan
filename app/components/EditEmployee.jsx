@@ -6,8 +6,6 @@ import { URL_UPDATE_EMPLOYEE } from '../consts';
 export default class EditEmployee extends Component {
   constructor(props) {
     super(props);
-    this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
     this.toggle = this.toggle.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleDepartmentChange = this.handleDepartmentChange.bind(this);
@@ -18,50 +16,23 @@ export default class EditEmployee extends Component {
     };
   }
 
-  handleClose() {
-    this.setState({ modal: false });
-  }
-
-  handleShow() {
-    this.setState({ modal: true });
-  }
-
-  handleNameChange(e) {
-    const employee = this.state.employee;
-    employee.name = e.target.value;
-    employee.email = `${e.target.value.split(' ').splice(-1, 1)}@pigareva.cc`;
-    this.setState({ employee });
-  }
-
-  handleDepartmentChange(e) {
-    const employee = this.state.employee;
-    employee.department = e.target.value;
-    this.setState({ employee });
-  }
-
   onSubmit() {
-    const data = {
-      name: this.state.employee.name,
-      department: this.state.employee.department,
-      email: this.state.employee.email,
-      photo: this.state.employee.photo,
-    };
+    const data = this.state.employee;
 
-    fetch(`${URL_UPDATE_EMPLOYEE}${this.state.employee._id}`,
+    fetch(
+      `${URL_UPDATE_EMPLOYEE}${this.state.employee._id}`,
       {
         headers: {
-          'Accept': 'application/json',
+          Accept: 'application/json',
           'Content-Type': 'application/json',
         },
         method: 'POST',
         body: JSON.stringify(data),
-      })
-      .then(res => {
-        res.json();
-      })
+      },
+    )
+      .then(res => res.json())
       .then(
         (response) => {
-          console.log('update response', response);
           this.setState({
             employee: {
               name: response.name,
@@ -69,12 +40,46 @@ export default class EditEmployee extends Component {
               email: response.email,
               photo: '',
             },
+            modal: false,
           });
+          // ToDo setState for EmployeeOnDesk
         },
         (error) => {
-          //ToDo
+          // ToDo
+          console.log('Can not edit the employee', error);
         },
       );
+  }
+
+  handleNameChange(e) {
+    const {
+      _id, department, photo,
+    } = this.state.employee;
+
+    this.setState({
+      employee: {
+        _id,
+        name: e.target.value,
+        email: `${e.target.value.split(' ').splice(-1, 1)}@pigareva.cc`,
+        department,
+        photo,
+      },
+    });
+  }
+
+  handleDepartmentChange(e) {
+    const {
+      _id, name, email, photo,
+    } = this.state.employee;
+    this.setState({
+      employee: {
+        _id,
+        name,
+        email,
+        department: e.target.value,
+        photo,
+      },
+    });
   }
 
   toggle() {
@@ -84,26 +89,24 @@ export default class EditEmployee extends Component {
   render() {
     return (
       <div className="modal-edit">
-        <Button color="danger" onClick={this.toggle} >Modal</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>Edit an employee</ModalHeader>
 
           <ModalBody>
-            <Form id={'editForm'}>
+            <Form id="editForm">
               <FormGroup>
                 <Label>Name</Label>
                 <Input
                   type="text"
                   value={this.state.employee.name}
-                  placeholder={this.state.employee.name}
                   onChange={this.handleNameChange}
-                  name={'name'}
+                  name="name"
                 />
 
                 <Label>Email</Label>
                 <Input
                   type="text"
-                  disabled={true}
+                  disabled
                   value={this.state.employee.email}
                 />
 
@@ -111,7 +114,6 @@ export default class EditEmployee extends Component {
                 <Input
                   type="text"
                   value={this.state.employee.department}
-                  placeholder={this.state.employee.department}
                   onChange={this.handleDepartmentChange}
                 />
               </FormGroup>
@@ -129,6 +131,17 @@ export default class EditEmployee extends Component {
 }
 
 EditEmployee.propTypes = {
-  employee: PropTypes.object,
+  employee: PropTypes.objectOf(PropTypes.string),
   modal: PropTypes.bool,
+};
+
+EditEmployee.defaultProps = {
+  employee: {
+    _id: null,
+    name: '',
+    department: '',
+    email: '@pigareva.cc',
+    photo: '',
+  },
+  modal: false,
 };
