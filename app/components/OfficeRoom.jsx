@@ -41,7 +41,7 @@ export default class OfficeRoom extends Component {
   }
 
   render() {
-    const { error, isLoaded, employees } = this.state.employees;
+    const { error, employees } = this.state.employees;
     const body = error ? <div>Error: {error.message}</div> :
       getTables(getDepartmentsWithEmployees(employees))
         .map(table => <TableWithEmployees table={table} key={table.department} />);

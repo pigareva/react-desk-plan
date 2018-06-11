@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardBody, CardTitle, CardSubtitle, Button, ButtonGroup } from 'reactstrap';
 import { TrashcanIcon, PencilIcon, PlusIcon } from 'react-octicons';
 import Clock from './Clock';
-import PropTypes from 'prop-types';
-import { URL_DELETE_EMPLOYEE, URL_UPDATE_EMPLOYEE } from '../consts';
+import { URL_DELETE_EMPLOYEE } from '../consts';
 import EditEmployee from './EditEmployee';
-
 
 export default class EmployeeOnDesk extends Component {
   constructor(props) {
@@ -18,17 +17,27 @@ export default class EmployeeOnDesk extends Component {
     this.addEmployee = this.addEmployee.bind(this);
     this.state = {
       atWork: true,
-      timeAtWork: 0,
+      // timeAtWork: 0,
       timerIsOff: false,
       employee: this.props.employee,
-      isRendered: false,
       showEdit: false,
     };
   }
 
   componentDidMount() {
     this.comeToOffice();
-    this.setState({ isRendered: true });
+  }
+
+  get email() {
+    return this.state.employee.email;
+  }
+
+  get name() {
+    return this.state.employee.name;
+  }
+
+  get department() {
+    return this.state.employee.department;
   }
 
   goHome() {
@@ -48,30 +57,29 @@ export default class EmployeeOnDesk extends Component {
   }
 
   deleteEmployee() {
-    if (this.state.isRendered) {
-      const id = this.state.employee._id;
+    const id = this.state.employee._id;
 
-      fetch(`${URL_DELETE_EMPLOYEE}${id}`)
-        .then(res => {
-          res.json();
-        })
-        .then(
-          () => {
-            this.setState({
-              employee: {
-                name: '',
-                department: 'I am not there any more',
-                email: '',
-                photo: '',
-              },
-              atWork: false,
-            });
-          },
-          (error) => {
-            //ToDo
-          },
-        );
-    }
+    fetch(`${URL_DELETE_EMPLOYEE}${id}`)
+      .then((res) => {
+        res.json();
+      })
+      .then(
+        () => {
+          this.setState({
+            employee: {
+              name: '',
+              department: 'I am not there any more',
+              email: '',
+              photo: '',
+            },
+            atWork: false,
+          });
+        },
+        (error) => {
+          // ToDo
+          console.log('Can not delete the employee', error);
+        },
+      );
   }
 
   editEmployee() {
@@ -82,23 +90,9 @@ export default class EmployeeOnDesk extends Component {
     // ToDo
   }
 
-  get email() {
-    return this.state.employee.email;
-  }
-
-  get name() {
-    return this.state.employee.name;
-  }
-
-  get department() {
-    return this.state.employee.department;
-  }
-
   render() {
-    console.log('EmployeeOnDesk employee', this.state.employee);
     const descStyle = this.state.atWork ? 'desk-flex-block desk-at-work' : 'desk-flex-block';
     const isEmployee = this.state.employee.name;
-    const showEdit = this.state.showEdit;
 
     return (
       <div>
@@ -107,7 +101,8 @@ export default class EmployeeOnDesk extends Component {
             <CardTitle><a href={`mailto:${this.email}`}>{this.name}</a></CardTitle>
             <CardSubtitle>{this.department}</CardSubtitle>
           </CardBody>
-          {isEmployee && <Button onClick={this.toggleEmployeeOnDesk}>
+          {isEmployee &&
+          <Button onClick={this.toggleEmployeeOnDesk}>
             {this.state.atWork ? 'I am working' : 'I am relaxing'}
           </Button>
           }
@@ -115,21 +110,22 @@ export default class EmployeeOnDesk extends Component {
           {isEmployee ?
             <ButtonGroup>
               <Button onClick={this.deleteEmployee}>
-                <TrashcanIcon/>
+                <TrashcanIcon />
               </Button>
               <Button onClick={this.editEmployee}>
-                <PencilIcon/>
+                <PencilIcon />
               </Button>
             </ButtonGroup> :
             <Button onClick={this.addEmployee}>
-              <PlusIcon/>
+              <PlusIcon />
             </Button>
           }
 
-          {isEmployee && <Clock time={0} isOff={this.state.timerIsOff}/>}
+          {isEmployee && <Clock time={0} isOff={this.state.timerIsOff} />}
         </Card>
 
-        {showEdit && <EditEmployee employee={this.state.employee} modal={showEdit}/>}
+        {this.state.showEdit &&
+        <EditEmployee employee={this.state.employee} modal={this.state.showEdit} />}
 
       </div>
     );
@@ -137,5 +133,5 @@ export default class EmployeeOnDesk extends Component {
 }
 
 EmployeeOnDesk.propTypes = {
-  employee: PropTypes.object.isRequired,
+  employee: PropTypes.objectOf(PropTypes.string).isRequired,
 };

@@ -47,3 +47,7 @@ Clock.propTypes = {
   time: PropTypes.number.isRequired,
   isGreetingNeeded: PropTypes.bool,
 };
+
+Clock.defaultProps = {
+  isGreetingNeeded: false,
+};

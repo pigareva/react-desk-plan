@@ -14,7 +14,7 @@ const plugins = [
     NODE_ENV: JSON.stringify(NODE_ENV),
   }),
 
-  new webpack.HotModuleReplacementPlugin()
+  new webpack.HotModuleReplacementPlugin(),
 ];
 
 // Define style loaders for production
