@@ -17,9 +17,9 @@ export default class OfficeRoom extends Component {
     };
   }
 
-  componentDidMount() {
-    fetch(URL_GET_ALL_EMPLOYEES)
-      .then(res => res.json())
+  async componentDidMount() {
+    const res = await fetch(URL_GET_ALL_EMPLOYEES);
+    res.json()
       .then(
         (result) => {
           this.setState({

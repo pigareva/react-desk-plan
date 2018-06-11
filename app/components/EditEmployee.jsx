@@ -16,10 +16,9 @@ export default class EditEmployee extends Component {
     };
   }
 
-  onSubmit() {
+  async onSubmit() {
     const data = this.state.employee;
-
-    fetch(
+    const res = await fetch(
       `${URL_UPDATE_EMPLOYEE}${this.state.employee._id}`,
       {
         headers: {
@@ -29,8 +28,9 @@ export default class EditEmployee extends Component {
         method: 'POST',
         body: JSON.stringify(data),
       },
-    )
-      .then(res => res.json())
+    );
+
+    res.json()
       .then(
         (response) => {
           this.setState({
@@ -42,10 +42,10 @@ export default class EditEmployee extends Component {
             },
             modal: false,
           });
-          // ToDo setState for EmployeeOnDesk
+        // ToDo setState for EmployeeOnDesk
         },
         (error) => {
-          // ToDo
+        // ToDo
           console.log('Can not edit the employee', error);
         },
       );
