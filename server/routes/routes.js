@@ -1,65 +1,63 @@
+/* eslint-disable array-callback-return,no-param-reassign,consistent-return */
 const express = require('express');
-const EmployeesRouter = express.Router();
 
+const EmployeesRouter = express.Router();
 const Employees = require('../models/employees');
 
-EmployeesRouter.route('/create').post(function (req, res) {
+EmployeesRouter.route('/create').post((req, res) => {
   const employees = new Employees(req.body);
   employees.save()
-    .then(employee => {
+    .then((employee) => {
       res.json(employee);
     })
-    .catch(err => {
-      res.status(400).send('unable to save to database');
+    .catch((err) => {
+      res.status(400).send(`unable to save to database: ${err}`);
     });
 });
 
-EmployeesRouter.route('/').get(function (req, res) {
+EmployeesRouter.route('/').get((req, res) => {
   Employees.find((err, employee) => {
-    if(err){
+    if (err) {
       console.log(err);
-    }
-    else {
+    } else {
       res.json(employee);
     }
   });
 });
 
-EmployeesRouter.route('/get/:id').get(function (req, res) {
-  const id = req.params.id.slice(1);
+EmployeesRouter.route('/get/:id').get((req, res) => {
+  const { id } = req.params;
   Employees.findById(id, (err, employee) => {
     res.json(employee);
   });
 });
 
-EmployeesRouter.route('/update/:id').post(function (req, res) {
-  const id = req.params.id.slice(1);
+EmployeesRouter.route('/update/:id').post((req, res) => {
+  const { id } = req.params;
 
   Employees.findById(id, (err, employee) => {
-    if (!employee)
-      return next(new Error('Could not load Document'));
-    else {
-      employee.name = req.body.name;
-      employee.department = req.body.department;
-      employee.email = req.body.email;
-      employee.photo = req.body.photo;
+    if (!employee) { return next(new Error('Could not load Document')); }
 
-      employee.save().then(employee => {
-        res.json(employee);
-      })
-        .catch(err => {
-          res.status(400).send("unable to update the database");
-        });
-    }
+    employee.name = req.body.name;
+    employee.department = req.body.department;
+    employee.email = req.body.email;
+    employee.photo = req.body.photo;
+
+    employee.save().then((employee) => {
+      res.json(employee);
+    })
+      .catch((err) => {
+        res.status(400).send(`unable to update the database: ${err}`);
+      });
   });
 });
 
-EmployeesRouter.route('/delete/:id').get(function (req, res) {
-  const id = req.params.id.slice(1);
-  Employees.findByIdAndRemove(id, (err, employee) => {
-      if(err) res.json(err);
-      else res.json('Successfully removed');
-    });
+EmployeesRouter.route('/delete/:id').get((req, res) => {
+  const { id } = req.params;
+  Employees.findByIdAndRemove(id, (err) => {
+    if (err) res.json(err);
+    else res.json('Successfully removed');
+  });
 });
 
 module.exports = EmployeesRouter;
