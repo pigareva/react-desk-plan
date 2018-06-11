@@ -9,7 +9,7 @@ export default class OfficeRoom extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      employees: {
+      data: {
         error: null,
         isLoaded: false,
         employees: [],
@@ -23,7 +23,7 @@ export default class OfficeRoom extends Component {
       .then(
         (result) => {
           this.setState({
-            employees: {
+            data: {
               isLoaded: true,
               employees: result,
             },
@@ -31,7 +31,7 @@ export default class OfficeRoom extends Component {
         },
         (error) => {
           this.setState({
-            employees: {
+            data: {
               isLoaded: true,
               error,
             },
@@ -41,7 +41,7 @@ export default class OfficeRoom extends Component {
   }
 
   render() {
-    const { error, employees } = this.state.employees;
+    const { error, employees } = this.state.data;
     const body = error ? <div>Error: {error.message}</div> :
       getTables(getDepartmentsWithEmployees(employees))
         .map(table => <TableWithEmployees table={table} key={table.department} />);
