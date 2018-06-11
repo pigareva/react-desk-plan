@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Card, CardBody, CardTitle, CardSubtitle, Button, ButtonGroup } from 'reactstrap';
 import { TrashcanIcon, PencilIcon, PlusIcon } from 'react-octicons';
 import Clock from './Clock';
-import { URL_DELETE_EMPLOYEE } from '../consts';
+import { DEFAULT_BACKGROUND, URL_DELETE_EMPLOYEE } from '../consts';
 import EditEmployee from './EditEmployee';
 
 export default class EmployeeOnDesk extends Component {
@@ -91,12 +91,15 @@ export default class EmployeeOnDesk extends Component {
   }
 
   render() {
-    const descStyle = this.state.atWork ? 'desk-flex-block desk-at-work' : 'desk-flex-block';
+    const deskStyle = this.state.atWork ? 'desk-flex-block desk-at-work' : 'desk-flex-block';
     const isEmployee = this.state.employee.name;
-
+    const backgroundImage = this.state.employee.photo ? `url(${this.state.employee.photo})` : `url(${DEFAULT_BACKGROUND})`;
     return (
       <div>
-        <Card className={descStyle}>
+        <Card
+          className={deskStyle}
+          style={this.state.atWork ? { backgroundImage } : null}
+        >
           <CardBody>
             <CardTitle><a href={`mailto:${this.email}`}>{this.name}</a></CardTitle>
             <CardSubtitle>{this.department}</CardSubtitle>

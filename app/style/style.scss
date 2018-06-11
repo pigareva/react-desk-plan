@@ -1,6 +1,6 @@
 $min-width: 900px;
 
-#root{
+#root {
 
   .lato {
     font-size: 14px;
@@ -31,37 +31,43 @@ $min-width: 900px;
     animation: header-background 54s linear;
   }
 
-    @keyframes sun {
-      from {
-        left: 25px;
-        bottom: 8px;
-      }
-      25% {bottom: 30px}
-      50% {bottom: 50px}
-      75% {bottom: 30px}
-      to {
-        left: 900px;
-        bottom: 8px;
-      }
+  @keyframes sun {
+    from {
+      left: 25px;
+      bottom: 8px;
     }
+    25% {
+      bottom: 30px
+    }
+    50% {
+      bottom: 50px
+    }
+    75% {
+      bottom: 30px
+    }
+    to {
+      left: 900px;
+      bottom: 8px;
+    }
+  }
 
-    .sun-box {
-      position: absolute;
-      color: #f1ff0e;
-      text-shadow: 0 0 5px black;
-      bottom: 0;
-      animation: sun 54s linear;
+  .sun-box {
+    position: absolute;
+    color: #f1ff0e;
+    text-shadow: 0 0 5px black;
+    bottom: 0;
+    animation: sun 54s linear;
 
-      .sun-symbol {
-        position: relative;
-        font-size: 20px;
-      }
-     }
+    .sun-symbol {
+      position: relative;
+      font-size: 20px;
+    }
+  }
 
   .desk-flex-container {
     display: flex;
     justify-content: space-around;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
     align-content: space-around;
     min-height: 100px;
     margin: 5% auto;
@@ -69,22 +75,21 @@ $min-width: 900px;
   }
 
   .desk-flex-block {
-       border: 1px gray dashed;
-       min-width: 250px;
-       min-height: 100px;
-       align-content: space-around;
-       margin-bottom: 20px;
-     }
+    border: 1px gray dashed;
+    min-width: 250px;
+    min-height: 100px;
+    align-content: space-around;
+    background-color: rgba(231, 232, 159, 0.7) !important;
+  }
 
   .desk-at-work {
-    background: url('../../public/img/at-work-icon.jpg') center no-repeat;
-    background-size: auto 100%;
+    background-size: 100% auto;
   }
 
   .table-flex-container {
     display: flex;
     flex-direction: column;
-    justify-content:space-around;
+    justify-content: space-around;
 
   }
 
