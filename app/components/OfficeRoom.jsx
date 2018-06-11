@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Container, Row, Col } from 'reactstrap';
 import getDepartmentsWithEmployees from '../functions/getDepartmentsWithEmployees';
 import getTables from '../functions/getTables';
 import Clock from './Clock';
@@ -53,8 +54,14 @@ export default class OfficeRoom extends Component {
           <div className="sun-box">
             <span className="sun-symbol">☀</span>
           </div>
-          <p>Local time is</p>
-          <Clock time={540} isGreetingNeeded />
+          <Container>
+            <Row>
+              <Col xs="3">Local time is</Col>
+              <Col xs="3">
+                <Clock time={540} isGreetingNeeded />
+              </Col>
+            </Row>
+          </Container>
         </header>
         <div className="table-flex-container">
           {body}

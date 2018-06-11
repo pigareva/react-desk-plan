@@ -36,8 +36,8 @@ export default class Clock extends Component {
 
   render() {
     return (
-      <div>
-        <h3>{String(Math.floor(this.state.time / 60)).padStart(2, '0')}:{String(this.state.time % 60).padStart(2, '0')}.</h3>
+      <div className="clock">
+        <p>{String(Math.floor(this.state.time / 60)).padStart(2, '0')}:{String(this.state.time % 60).padStart(2, '0')}</p>
       </div>
     );
   }
