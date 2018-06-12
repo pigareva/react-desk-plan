@@ -21,6 +21,7 @@ export default class EmployeeOnDesk extends Component {
       timerIsOff: false,
       employee: this.props.employee,
       showEdit: false,
+      showAdd: false,
     };
   }
 
@@ -87,7 +88,7 @@ export default class EmployeeOnDesk extends Component {
   }
 
   addEmployee() {
-    // ToDo
+    this.setState({ showAdd: true });
   }
 
   render() {
@@ -129,6 +130,9 @@ export default class EmployeeOnDesk extends Component {
 
         {this.state.showEdit &&
         <EditEmployee employee={this.state.employee} modal={this.state.showEdit} />}
+
+        {this.state.showAdd &&
+        <EditEmployee modal={this.state.showAdd} />}
 
       </div>
     );
