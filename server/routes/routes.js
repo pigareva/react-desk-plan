@@ -1,4 +1,5 @@
-/* eslint-disable array-callback-return,no-param-reassign,consistent-return */
+/* eslint-disable no-param-reassign,no-shadow,consistent-return,no-undef,array-callback-return */
+
 const express = require('express');
 
 const EmployeesRouter = express.Router();

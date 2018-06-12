@@ -1,5 +1,5 @@
 const routes = require('./routes');
 
-module.exports = function (app, db) {
+module.exports = (app, db) => {
   routes(app, db);
 };
