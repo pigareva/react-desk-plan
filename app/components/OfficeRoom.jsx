@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Button } from 'reactstrap';
+import { PlusIcon } from 'react-octicons';
 import getDepartmentsWithEmployees from '../functions/getDepartmentsWithEmployees';
 import getTables from '../functions/getTables';
 import Clock from './Clock';
 import TableWithEmployees from './TableWithEmployees';
 import { URL_GET_ALL_EMPLOYEES } from '../consts';
+import EditEmployee from './EditEmployee';
 
 export default class OfficeRoom extends Component {
   constructor(props) {
     super(props);
+    this.addEmployee = this.addEmployee.bind(this);
     this.state = {
       data: {
         error: null,
         isLoaded: false,
         employees: [],
       },
+      showAdd: false,
     };
   }
 
@@ -41,6 +45,10 @@ export default class OfficeRoom extends Component {
       );
   }
 
+  addEmployee() {
+    this.setState({ showAdd: true });
+  }
+
   render() {
     const { error, employees } = this.state.data;
     const body = error ? <div>Error: {error.message}</div> :
@@ -50,6 +58,9 @@ export default class OfficeRoom extends Component {
     return (
       <div className="container">
         <header>
+          <Button onClick={this.addEmployee}>
+            <PlusIcon />
+          </Button>
           <h1 className="text-center">Desk plan</h1>
           <div className="sun-box">
             <span className="sun-symbol">☀</span>
@@ -66,6 +77,9 @@ export default class OfficeRoom extends Component {
         <div className="table-flex-container">
           {body}
         </div>
+
+        {this.state.showAdd &&
+        <EditEmployee modal={this.state.showAdd} />}
       </div>
     );
   }
