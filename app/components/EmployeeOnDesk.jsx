@@ -13,11 +13,12 @@ export default class EmployeeOnDesk extends Component {
     this.comeToOffice = this.comeToOffice.bind(this);
     this.toggleEmployeeOnDesk = this.toggleEmployeeOnDesk.bind(this);
     this.deleteEmployee = this.deleteEmployee.bind(this);
+    this.showEditEmployee = this.showEditEmployee.bind(this);
+    this.showAddEmployee = this.showAddEmployee.bind(this);
     this.editEmployee = this.editEmployee.bind(this);
     this.addEmployee = this.addEmployee.bind(this);
     this.state = {
       atWork: true,
-      // timeAtWork: 0,
       timerIsOff: false,
       employee: this.props.employee,
       showEdit: false,
@@ -83,12 +84,20 @@ export default class EmployeeOnDesk extends Component {
       );
   }
 
-  editEmployee() {
+  showEditEmployee() {
     this.setState({ showEdit: true });
   }
 
-  addEmployee() {
+  showAddEmployee() {
     this.setState({ showAdd: true });
+  }
+
+  editEmployee(employee) {
+    this.setState({ employee });
+  }
+
+  addEmployee(employee) {
+    this.setState({ employee, atWork: true });
   }
 
   render() {
@@ -121,11 +130,11 @@ export default class EmployeeOnDesk extends Component {
               <Button onClick={this.deleteEmployee}>
                 <TrashcanIcon />
               </Button>
-              <Button onClick={this.editEmployee}>
+              <Button onClick={this.showEditEmployee}>
                 <PencilIcon />
               </Button>
             </ButtonGroup> :
-            <Button onClick={this.addEmployee}>
+            <Button onClick={this.showAddEmployee}>
               <PlusIcon />
             </Button>
           }
@@ -133,10 +142,14 @@ export default class EmployeeOnDesk extends Component {
         </Card>
 
         {this.state.showEdit &&
-        <EditEmployee employee={this.state.employee} modal={this.state.showEdit} />}
+        <EditEmployee
+          employee={this.state.employee}
+          editCallback={this.editEmployee}
+          modal={this.state.showEdit}
+        />}
 
         {this.state.showAdd &&
-        <EditEmployee modal={this.state.showAdd} />}
+        <EditEmployee modal={this.state.showAdd} editCallback={this.addEmployee} />}
 
       </div>
     );

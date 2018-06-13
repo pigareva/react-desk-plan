@@ -38,6 +38,8 @@ export default class EditEmployee extends Component {
           console.log('Can not edit the employee', error);
         },
       );
+
+    this.props.editCallback(this.state.employee);
   }
 
   async create() {
@@ -154,6 +156,7 @@ export default class EditEmployee extends Component {
 EditEmployee.propTypes = {
   employee: PropTypes.objectOf(PropTypes.string),
   modal: PropTypes.bool,
+  editCallback: PropTypes.func.isRequired,
 };
 
 EditEmployee.defaultProps = {
