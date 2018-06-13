@@ -5,7 +5,7 @@ import getDepartmentsWithEmployees from '../functions/getDepartmentsWithEmployee
 import getTables from '../functions/getTables';
 import Clock from './Clock';
 import TableWithEmployees from './TableWithEmployees';
-import { URL_GET_ALL_EMPLOYEES } from '../consts';
+import { END_WORKING_DAY_TIME, START_WORKING_DAY_TIME, URL_GET_ALL_EMPLOYEES } from '../consts';
 import EditEmployee from './EditEmployee';
 
 export default class OfficeRoom extends Component {
@@ -69,7 +69,11 @@ export default class OfficeRoom extends Component {
             <Row>
               <Col xs="3">Local time is</Col>
               <Col xs="6">
-                <Clock time={540} isGreetingNeeded />
+                <Clock
+                  startTime={START_WORKING_DAY_TIME}
+                  endTime={END_WORKING_DAY_TIME}
+                  isGreetingNeeded
+                />
               </Col>
             </Row>
           </Container>
