@@ -35,7 +35,7 @@ const plugins = [
 // });
 
 module.exports = {
-  entry: path.resolve(__dirname, 'app/App.jsx'),
+  entry: path.resolve(__dirname, 'src/App.jsx'),
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'public/'),
@@ -68,7 +68,7 @@ module.exports = {
     rules: [
       {
         test: /\.scss$/,
-        include: path.resolve(__dirname, 'app/style'),
+        include: path.resolve(__dirname, 'src/style'),
         // use: ExtractTextPlugin.extract({
         //   fallback: 'style-loader',
         //   use: [
