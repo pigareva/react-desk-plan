@@ -5,7 +5,7 @@ import Greeting from './Greeting';
 export default class Clock extends Component {
   constructor(props) {
     super(props);
-    this.state = { time: props.time, isOff: false };
+    this.state = { time: props.time };
   }
 
   componentDidMount() {
@@ -18,7 +18,7 @@ export default class Clock extends Component {
 
   tick() {
     const currentTime = this.state.time;
-    if (!this.state.isOff) {
+    if (!this.props.isOff) {
       this.setState({ time: currentTime >= 1440 ? 540 : currentTime + 1 });
     }
   }
@@ -46,9 +46,11 @@ export default class Clock extends Component {
 
 Clock.propTypes = {
   time: PropTypes.number.isRequired,
+  isOff: PropTypes.bool,
   isGreetingNeeded: PropTypes.bool,
 };
 
 Clock.defaultProps = {
   isGreetingNeeded: false,
+  isOff: false,
 };
