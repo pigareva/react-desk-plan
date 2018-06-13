@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Card, CardBody, CardTitle, CardSubtitle, Button, ButtonGroup } from 'reactstrap';
 import { TrashcanIcon, PencilIcon, PlusIcon } from 'react-octicons';
 import Clock from './Clock';
-import { DEFAULT_BACKGROUND, URL_DELETE_EMPLOYEE } from '../consts';
+import { DEFAULT_BACKGROUND, URL_DELETE_EMPLOYEE, WORKING_DAY_LONG } from '../consts';
 import EditEmployee from './EditEmployee';
 
 export default class EmployeeOnDesk extends Component {
@@ -109,7 +109,11 @@ export default class EmployeeOnDesk extends Component {
           {isEmployee ?
             <ButtonGroup>
               <Button className="clock-button">
-                <Clock time={0} isOff={this.state.timerIsOff} />
+                <Clock
+                  endTime={WORKING_DAY_LONG}
+                  isOff={this.state.timerIsOff}
+                  endTimeCallback={this.goHome}
+                />
               </Button>
               <Button onClick={this.toggleEmployeeOnDesk}>
                 {this.state.atWork ? 'I am working' : 'I am relaxing'}

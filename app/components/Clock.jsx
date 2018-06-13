@@ -23,6 +23,9 @@ export default class Clock extends Component {
         time: currentTime >= this.props.endTime ? this.props.endTime : currentTime + 1,
       });
     }
+    if (this.state.time === this.props.endTime && this.props.endTimeCallback) {
+      this.props.endTimeCallback();
+    }
   }
 
   stopTime() {
@@ -40,7 +43,7 @@ export default class Clock extends Component {
     return (
       <div>
         <div className="clock">{String(Math.floor(this.state.time / 60)).padStart(2, '0')}:{String(this.state.time % 60).padStart(2, '0')}</div>
-        {this.props.isGreetingNeeded && <Greeting time={this.state.time} />}
+        {this.props.isGreetingNeeded && <Greeting time={this.state.time || 0} />}
       </div>
     );
   }
@@ -51,6 +54,7 @@ Clock.propTypes = {
   endTime: PropTypes.number,
   isOff: PropTypes.bool,
   isGreetingNeeded: PropTypes.bool,
+  endTimeCallback: PropTypes.func,
 };
 
 Clock.defaultProps = {
@@ -58,4 +62,5 @@ Clock.defaultProps = {
   isOff: false,
   startTime: 0,
   endTime: 99999999999,
+  endTimeCallback: null,
 };
