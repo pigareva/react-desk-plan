@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Greeting from './Greeting';
 
 export default class Clock extends Component {
   constructor(props) {
     super(props);
     this.state = { time: props.time, isOff: false };
-    this.isGreetingNeeded = props.isGreetingNeeded || false;
   }
 
   componentDidMount() {
@@ -36,8 +36,9 @@ export default class Clock extends Component {
 
   render() {
     return (
-      <div className="clock">
-        <p>{String(Math.floor(this.state.time / 60)).padStart(2, '0')}:{String(this.state.time % 60).padStart(2, '0')}</p>
+      <div>
+        <div className="clock">{String(Math.floor(this.state.time / 60)).padStart(2, '0')}:{String(this.state.time % 60).padStart(2, '0')}</div>
+        {this.props.isGreetingNeeded && <Greeting time={this.state.time} />}
       </div>
     );
   }

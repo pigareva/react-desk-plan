@@ -68,7 +68,7 @@ export default class OfficeRoom extends Component {
           <Container>
             <Row>
               <Col xs="3">Local time is</Col>
-              <Col xs="3">
+              <Col xs="6">
                 <Clock time={540} isGreetingNeeded />
               </Col>
             </Row>
