@@ -20,7 +20,7 @@ export default class Clock extends Component {
     const currentTime = this.state.time || this.props.startTime;
     if (!this.props.isOff) {
       this.setState({
-        time: currentTime >= this.props.endTime ? this.props.startTime : currentTime + 1,
+        time: currentTime >= this.props.endTime ? this.props.endTime : currentTime + 1,
       });
     }
   }
