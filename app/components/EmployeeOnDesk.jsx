@@ -13,8 +13,8 @@ export default class EmployeeOnDesk extends Component {
     this.comeToOffice = this.comeToOffice.bind(this);
     this.toggleEmployeeOnDesk = this.toggleEmployeeOnDesk.bind(this);
     this.deleteEmployee = this.deleteEmployee.bind(this);
-    this.showEditEmployee = this.showEditEmployee.bind(this);
-    this.showAddEmployee = this.showAddEmployee.bind(this);
+    this.toggleEditModal = this.toggleEditModal.bind(this);
+    this.toggleAddModal = this.toggleAddModal.bind(this);
     this.editEmployee = this.editEmployee.bind(this);
     this.addEmployee = this.addEmployee.bind(this);
     this.state = {
@@ -84,20 +84,22 @@ export default class EmployeeOnDesk extends Component {
       );
   }
 
-  showEditEmployee() {
-    this.setState({ showEdit: true });
+  toggleEditModal() {
+    this.setState({ showEdit: !this.state.showEdit });
   }
 
-  showAddEmployee() {
-    this.setState({ showAdd: true });
+  toggleAddModal() {
+    this.setState({ showAdd: !this.state.showAdd });
   }
 
   editEmployee(employee) {
     this.setState({ employee });
+    this.toggleEditModal();
   }
 
   addEmployee(employee) {
     this.setState({ employee, atWork: true });
+    this.toggleAddModal();
   }
 
   render() {
@@ -130,11 +132,11 @@ export default class EmployeeOnDesk extends Component {
               <Button onClick={this.deleteEmployee}>
                 <TrashcanIcon />
               </Button>
-              <Button onClick={this.showEditEmployee}>
+              <Button onClick={this.toggleEditModal}>
                 <PencilIcon />
               </Button>
             </ButtonGroup> :
-            <Button onClick={this.showAddEmployee}>
+            <Button onClick={this.toggleAddModal}>
               <PlusIcon />
             </Button>
           }

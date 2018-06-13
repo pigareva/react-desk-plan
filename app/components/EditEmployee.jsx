@@ -21,25 +21,12 @@ export default class EditEmployee extends Component {
 
     res.json()
       .then(
-        (response) => {
-          this.setState({
-            employee: {
-              name: response.name,
-              department: response.department,
-              email: response.email,
-              photo: '',
-            },
-            modal: false,
-          });
-          // ToDo setState for EmployeeOnDesk
-        },
+        response => this.props.editCallback(response),
         (error) => {
         // ToDo
           console.log('Can not edit the employee', error);
         },
       );
-
-    this.props.editCallback(this.state.employee);
   }
 
   async create() {
