@@ -4,6 +4,10 @@
   "description": "React application",
   "author": "Olga Pigareva",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pigareva/react-desk-plan"
+  },
   "scripts": {
     "start": "webpack-dev-server --progress"
   },
@@ -44,6 +48,8 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-octicons": "^0.2.0",
-    "reactstrap": "^6.0.1"
+    "react-redux": "^5.0.7",
+    "reactstrap": "^6.0.1",
+    "redux": "^4.0.0"
   }
 }
