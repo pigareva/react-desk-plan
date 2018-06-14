@@ -8,7 +8,6 @@ import Header from './Header';
 export default class OfficeRoom extends Component {
   constructor(props) {
     super(props);
-    this.addEmployee = this.addEmployee.bind(this);
     this.state = {
       data: {
         error: null,
