@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, ModalFooter, ModalHeader, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
-import getCurrentTime from '../functions/getCurrentTime';
-import { START_WORKING_DAY_TIME } from '../consts';
 
 export default class StartNewDay extends Component {
   constructor(props) {
@@ -15,7 +13,6 @@ export default class StartNewDay extends Component {
   }
 
   onSubmit() {
-    // getCurrentTime(START_WORKING_DAY_TIME);
     this.props.onSubmit();
     this.toggle();
   }

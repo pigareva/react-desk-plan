@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import OfficeRoom from '../components/OfficeRoom';
 import getEmployees from '../controller/employeesController';
+import getCurrentTime from '../functions/getCurrentTime';
+import { START_WORKING_DAY_TIME } from '../consts';
 
 const mapStateToProps = state => ({
   data: {
@@ -12,6 +14,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = () => ({
   onSubmit: async () => {
     await getEmployees();
+    getCurrentTime(START_WORKING_DAY_TIME);
   },
 });
 
