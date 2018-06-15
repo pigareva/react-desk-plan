@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Greeting from './Greeting';
 import { TIME_INTERVAL } from '../consts';
+import Clock from './Clock';
 
 export default class DeskClock extends Component {
   constructor(props) {
@@ -41,12 +41,7 @@ export default class DeskClock extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <div className="clock">{String(Math.floor(this.state.time / 60)).padStart(2, '0')}:{String(this.state.time % 60).padStart(2, '0')}</div>
-        {this.props.isGreetingNeeded && <Greeting time={this.state.time || 0} />}
-      </div>
-    );
+    return <Clock time={this.state.time} />;
   }
 }
 
@@ -54,12 +49,10 @@ DeskClock.propTypes = {
   startTime: PropTypes.number,
   endTime: PropTypes.number,
   isOff: PropTypes.bool,
-  isGreetingNeeded: PropTypes.bool,
   endTimeCallback: PropTypes.func,
 };
 
 DeskClock.defaultProps = {
-  isGreetingNeeded: false,
   isOff: false,
   startTime: 0,
   endTime: 99999999999,
