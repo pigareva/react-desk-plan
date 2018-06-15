@@ -27,7 +27,7 @@ export default class StartNewDay extends Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader>Welcome to the office</ModalHeader>
           <ModalFooter>
-            <Button onClick={this.onSubmit}>Start new day</Button>
+            <Button color="success" block onClick={this.onSubmit}>Start new day</Button>
           </ModalFooter>
         </Modal>
       </div>
