@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Button } from 'reactstrap';
 import { PlusIcon } from 'react-octicons';
-import Clock from './Clock';
-import { END_WORKING_DAY_TIME, START_WORKING_DAY_TIME } from '../consts';
+import DisplayHeaderClock from '../containers/DisplayHeaderClock';
 import EditEmployee from './EditEmployee';
 
 export default class Header extends Component {
@@ -32,11 +31,7 @@ export default class Header extends Component {
           <Row>
             <Col xs="3">Local time is</Col>
             <Col xs="6">
-              <Clock
-                startTime={START_WORKING_DAY_TIME}
-                endTime={END_WORKING_DAY_TIME}
-                isGreetingNeeded
-              />
+              <DisplayHeaderClock />
             </Col>
           </Row>
         </Container>
