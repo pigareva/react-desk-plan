@@ -107,53 +107,50 @@ export default class EmployeeOnDesk extends Component {
     const isEmployee = this.state.employee.name;
     const backgroundImage = this.state.employee.photo ? `url(${this.state.employee.photo})` : `url(${DEFAULT_BACKGROUND})`;
     return (
-      <div>
-        <Card
-          className={deskStyle}
-          style={this.state.atWork ? { backgroundImage } : null}
-        >
-          <CardBody>
-            <CardTitle><a href={`mailto:${this.email}`}>{this.name}</a></CardTitle>
-            <CardSubtitle>{this.department}</CardSubtitle>
-          </CardBody>
+      <Card
+        className={deskStyle}
+        style={this.state.atWork ? { backgroundImage } : null}
+      >
+        <CardBody>
+          <CardTitle><a href={`mailto:${this.email}`}>{this.name}</a></CardTitle>
+          <CardSubtitle>{this.department}</CardSubtitle>
+        </CardBody>
 
-          {isEmployee ?
-            <ButtonGroup>
-              <Button className="clock-button">
-                <Clock
-                  endTime={WORKING_DAY_LONG}
-                  isOff={this.state.timerIsOff}
-                  endTimeCallback={this.goHome}
-                />
-              </Button>
-              <Button onClick={this.toggleEmployeeOnDesk}>
-                {this.state.atWork ? 'I am working' : 'I am relaxing'}
-              </Button>
-              <Button onClick={this.deleteEmployee}>
-                <TrashcanIcon />
-              </Button>
-              <Button onClick={this.toggleEditModal}>
-                <PencilIcon />
-              </Button>
-            </ButtonGroup> :
-            <Button onClick={this.toggleAddModal}>
-              <PlusIcon />
+        {isEmployee ?
+          <ButtonGroup>
+            <Button className="clock-button">
+              <Clock
+                endTime={WORKING_DAY_LONG}
+                isOff={this.state.timerIsOff}
+                endTimeCallback={this.goHome}
+              />
             </Button>
+            <Button onClick={this.toggleEmployeeOnDesk}>
+              {this.state.atWork ? 'I am working' : 'I am relaxing'}
+            </Button>
+            <Button onClick={this.deleteEmployee}>
+              <TrashcanIcon />
+            </Button>
+            <Button onClick={this.toggleEditModal}>
+              <PencilIcon />
+            </Button>
+          </ButtonGroup> :
+          <Button onClick={this.toggleAddModal}>
+            <PlusIcon />
+          </Button>
           }
 
-        </Card>
-
         {this.state.showEdit &&
-        <EditEmployee
-          employee={this.state.employee}
-          editCallback={this.editEmployee}
-          modal={this.state.showEdit}
-        />}
+          <EditEmployee
+            employee={this.state.employee}
+            editCallback={this.editEmployee}
+            modal={this.state.showEdit}
+          />}
 
         {this.state.showAdd &&
-        <EditEmployee modal={this.state.showAdd} editCallback={this.addEmployee} />}
+          <EditEmployee modal={this.state.showAdd} editCallback={this.addEmployee} />}
 
-      </div>
+      </Card>
     );
   }
 }
