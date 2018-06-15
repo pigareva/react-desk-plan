@@ -7,6 +7,8 @@ const EmployeeSchema = new Schema({
   name: { type: String },
   email: { type: String },
   photo: { type: String },
+}, {
+  versionKey: false,
 });
 
 module.exports = mongoose.model('Employees', EmployeeSchema);
