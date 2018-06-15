@@ -15,7 +15,8 @@ export default class StartNewDay extends Component {
   }
 
   onSubmit() {
-    getCurrentTime(START_WORKING_DAY_TIME);
+    // getCurrentTime(START_WORKING_DAY_TIME);
+    this.props.onSubmit();
     this.toggle();
   }
 
@@ -39,6 +40,7 @@ export default class StartNewDay extends Component {
 
 StartNewDay.propTypes = {
   modal: PropTypes.bool,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 StartNewDay.defaultProps = {
