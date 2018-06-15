@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import getDepartmentsWithEmployees from '../functions/getDepartmentsWithEmployees';
 import getTables from '../functions/getTables';
-import TableWithEmployees from './TableWithEmployees';
+import TableWithEmployees from './Department';
 import Header from './Header';
 import StartNewDay from './StartNewDay';
 
@@ -10,7 +10,7 @@ const OfficeRoom = ({ data, onSubmit }) => {
   const { error, employees } = data;
   const body = error ? <div>Error: {error.message}</div> :
     getTables(getDepartmentsWithEmployees(employees))
-      .map(table => <TableWithEmployees table={table} key={table.department} />);
+      .map(table => <TableWithEmployees department={table} key={table.department} />);
 
   return (
     <div className="container">
