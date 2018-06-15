@@ -6,7 +6,7 @@ const EmployeesRouter = express.Router();
 const Employees = require('../models/employees');
 
 EmployeesRouter.route('/create').post((req, res) => {
-  const newEmployee = new Employees();
+  const newEmployee = new Employees(req.body);
   newEmployee.save()
     .then((employee) => {
       res.json(employee);

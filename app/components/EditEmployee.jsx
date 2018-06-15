@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, ModalBody, ModalFooter, ModalHeader, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { URL_CREATE_EMPLOYEE, URL_UPDATE_EMPLOYEE } from '../consts';
+import { createEmployee, updateEmployee } from '../controller/employeesController';
 
 export default class EditEmployee extends Component {
   constructor(props) {
@@ -17,7 +17,9 @@ export default class EditEmployee extends Component {
   }
 
   async onSubmit() {
-    const res = this.props.employee.name ? await this.update() : await this.create();
+    const res = this.props.employee.name ?
+      await updateEmployee(this.state.employee) :
+      await createEmployee(this.state.employee);
 
     res.json()
       .then(
@@ -27,38 +29,6 @@ export default class EditEmployee extends Component {
           console.log('Can not edit the employee', error);
         },
       );
-  }
-
-  async create() {
-    const data = this.state.employee;
-    delete data._id;
-    const createRes = await fetch(
-      `${URL_CREATE_EMPLOYEE}`,
-      {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        method: 'POST',
-        body: JSON.stringify(data),
-      },
-    );
-    return createRes;
-  }
-
-  async update() {
-    const updateRes = await fetch(
-      `${URL_UPDATE_EMPLOYEE}${this.state.employee._id}`,
-      {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        method: 'POST',
-        body: JSON.stringify(this.state.employee),
-      },
-    );
-    return updateRes;
   }
 
   handleNameChange(e) {

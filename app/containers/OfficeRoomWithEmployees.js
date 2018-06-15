@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import OfficeRoom from '../components/OfficeRoom';
-import getEmployees from '../controller/employeesController';
+import { getEmployees } from '../controller/employeesController';
 import getCurrentTime from '../functions/getCurrentTime';
 import { START_WORKING_DAY_TIME } from '../consts';
 
