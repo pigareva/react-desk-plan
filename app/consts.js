@@ -18,3 +18,5 @@ export const TIME_INTERVAL = 100;
 export const CURRENT_TIME = 'CURRENT_TIME';
 export const NEW_HOUR = 'NEW_HOUR';
 export const NEW_DAY = 'NEW_DAY';
+
+export const EMPLOYEES_LOADED = 'EMPLOYEES_LOADED';
