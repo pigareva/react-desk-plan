@@ -4,6 +4,7 @@ import getTables from '../functions/getTables';
 import TableWithEmployees from './TableWithEmployees';
 import { URL_GET_ALL_EMPLOYEES } from '../consts';
 import Header from './Header';
+import StartNewDay from './StartNewDay';
 
 export default class OfficeRoom extends Component {
   constructor(props) {
@@ -51,6 +52,7 @@ export default class OfficeRoom extends Component {
         <div className="table-flex-container">
           {body}
         </div>
+        <StartNewDay modal />
       </div>
     );
   }
