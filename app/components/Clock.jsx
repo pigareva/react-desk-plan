@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Greeting from './Greeting';
+import { TIME_INTERVAL } from '../consts';
 
 export default class Clock extends Component {
   constructor(props) {
@@ -35,7 +36,7 @@ export default class Clock extends Component {
   startTime() {
     this.timerID = setInterval(
       () => this.tick(),
-      100,
+      TIME_INTERVAL,
     );
   }
 
