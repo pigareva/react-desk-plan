@@ -1,14 +1,10 @@
 const path = require('path');
-// const ExtractTextPlugin = require('extract-text-webpack-plugin');
-// const BabelWebpackPlugin = require('babel-minify-webpack-plugin');
+const BabelWebpackPlugin = require('babel-minify-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV.toLowerCase() : 'development';
 const webpack = require('webpack');
 
 const plugins = [
-  // Do not emit a file with errors
-  new webpack.NoEmitOnErrorsPlugin(),
-
   // Create a NODE_ENV const https://webpack.js.org/plugins/define-plugin
   new webpack.DefinePlugin({
     NODE_ENV: JSON.stringify(NODE_ENV),
@@ -17,22 +13,9 @@ const plugins = [
   new webpack.HotModuleReplacementPlugin(),
 ];
 
-// Define style loaders for production
-// Extract css in a separate file
-// const productionStyleLoaders = ExtractTextPlugin.extract({
-//   fallback: 'style',
-//   use: [
-//     {
-//       loader: 'css',
-//       options: {
-//         minimize: true,
-//       },
-//     },
-//     {
-//       loader: 'less',
-//     },
-//   ],
-// });
+if (NODE_ENV === 'production') {
+  plugins.push(new BabelWebpackPlugin());
+}
 
 module.exports = {
   entry: path.resolve(__dirname, 'app/App.jsx'),
@@ -69,20 +52,20 @@ module.exports = {
       {
         test: /\.scss$/,
         include: path.resolve(__dirname, 'app/style'),
-        // use: ExtractTextPlugin.extract({
-        //   fallback: 'style-loader',
-        //   use: [
-        //     {
-        //       loader: 'css-loader',
-        //       options: {
-        //         minimize: NODE_ENV === 'production',
-        //         root: '.',
-        //       },
-        //     },
-        //     { loader: 'sass-loader' },
-        //   ],
-        // }),
-        use: ['style', 'css', 'sass'],
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              minimize: NODE_ENV === 'production',
+            },
+          },
+          {
+            loader: 'sass-loader',
+          },
+        ],
       },
       {
         test: /\.css$/,
