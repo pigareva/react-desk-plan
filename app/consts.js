@@ -1,4 +1,3 @@
-export const FRONTEND_PORT = '8080';
 export const BACKEND_PORT = '8000';
 
 const URL_EMPLOYEES = `http://localhost:${BACKEND_PORT}/employees`;
@@ -20,3 +19,7 @@ export const NEW_HOUR = 'NEW_HOUR';
 export const NEW_DAY = 'NEW_DAY';
 
 export const EMPLOYEES_LOADED = 'EMPLOYEES_LOADED';
+export const EMPLOYEE_CREATED = 'EMPLOYEE_CREATED';
+export const EMPLOYEE_UPDATED = 'EMPLOYEE_UPDATED';
+
+export const ADD_BUTTON_CLICK = 'ADD_BUTTON_CLICK';
