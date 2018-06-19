@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 import { Card, CardBody, CardTitle, CardSubtitle, Button, ButtonGroup } from 'reactstrap';
 import { TrashcanIcon, PencilIcon, PlusIcon } from 'react-octicons';
 import DeskClock from './DeskClock';
-import { DEFAULT_BACKGROUND, URL_DELETE_EMPLOYEE, WORKING_DAY_LONG } from '../consts';
+import { DEFAULT_BACKGROUND, WORKING_DAY_LONG } from '../consts';
 import EditEmployee from './EditEmployee';
+import { deleteEmployee } from '../controller/employeesController';
+import store from '../store';
+import { employeeDeleted } from '../actions';
 
 export default class EmployeeOnDesk extends Component {
   constructor(props) {
@@ -16,7 +19,6 @@ export default class EmployeeOnDesk extends Component {
     this.toggleEditModal = this.toggleEditModal.bind(this);
     this.toggleAddModal = this.toggleAddModal.bind(this);
     this.editEmployee = this.editEmployee.bind(this);
-    this.addEmployee = this.addEmployee.bind(this);
     this.state = {
       atWork: true,
       timerIsOff: false,
@@ -58,24 +60,14 @@ export default class EmployeeOnDesk extends Component {
     }
   }
 
-  deleteEmployee() {
+  async deleteEmployee() {
     const id = this.state.employee._id;
+    const res = await deleteEmployee(id);
 
-    fetch(`${URL_DELETE_EMPLOYEE}${id}`)
-      .then((res) => {
-        res.json();
-      })
+    res.json()
       .then(
         () => {
-          this.setState({
-            employee: {
-              name: '',
-              department: 'I am not there any more',
-              email: '',
-              photo: '',
-            },
-            atWork: false,
-          });
+          store.dispatch(employeeDeleted({ id: this.state.employee._id }));
         },
         (error) => {
           // ToDo
@@ -95,11 +87,6 @@ export default class EmployeeOnDesk extends Component {
   editEmployee(employee) {
     this.setState({ employee });
     this.toggleEditModal();
-  }
-
-  addEmployee(employee) {
-    this.setState({ employee, atWork: true });
-    this.toggleAddModal();
   }
 
   render() {
@@ -146,9 +133,6 @@ export default class EmployeeOnDesk extends Component {
             editCallback={this.editEmployee}
             modal={this.state.showEdit}
           />}
-
-        {this.state.showAdd &&
-          <EditEmployee modal={this.state.showAdd} editCallback={this.addEmployee} />}
 
       </Card>
     );
