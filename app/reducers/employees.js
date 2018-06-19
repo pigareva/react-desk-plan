@@ -1,10 +1,15 @@
-import { EMPLOYEE_CREATED, EMPLOYEE_UPDATED, EMPLOYEES_LOADED } from '../consts';
+import { EMPLOYEE_CREATED, EMPLOYEE_DELETED, EMPLOYEE_UPDATED, EMPLOYEES_LOADED } from '../consts';
 
 const employees = (state = {}, action) => {
   switch (action.type) {
     case EMPLOYEES_LOADED:
     {
       return Object.assign({}, state, { employeesData: action.employeesData });
+    }
+    case EMPLOYEE_DELETED:
+    {
+      const employeesData = state.employeesData.filter(employee => employee._id !== action.id);
+      return Object.assign({}, state, { employeesData });
     }
     case EMPLOYEE_CREATED:
     {
