@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import getDepartmentsWithEmployees from '../functions/getDepartmentsWithEmployees';
 import getTables from '../functions/getTables';
 import TableWithEmployees from './Department';
-import Header from './Header';
+import HeaderWithAdd from '../containers/HeaderWithAdd';
 import StartNewDay from './StartNewDay';
 
 const OfficeRoom = ({ data, onSubmit }) => {
@@ -14,7 +14,7 @@ const OfficeRoom = ({ data, onSubmit }) => {
 
   return (
     <div className="container">
-      <Header />
+      <HeaderWithAdd />
       <div className="table-flex-container">
         {body}
       </div>
