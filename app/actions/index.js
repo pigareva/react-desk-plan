@@ -1,5 +1,5 @@
 import {
-  CURRENT_TIME, NEW_DAY, NEW_HOUR, EMPLOYEES_LOADED,
+  CURRENT_TIME, END_DAY, NEW_DAY, EMPLOYEES_LOADED,
   EMPLOYEE_CREATED, ADD_BUTTON_CLICK, EMPLOYEE_UPDATED, EMPLOYEE_DELETED,
 } from '../consts';
 
@@ -10,9 +10,13 @@ export const currentTime = time => ({
   time,
 });
 
-export const newDay = {
-  type: NEW_DAY,
+export const endDay = {
+  type: END_DAY,
   day: dayNumber += 1,
+};
+
+export const startDay = {
+  type: NEW_DAY,
 };
 
 export const fetchEmployees = data => ({
