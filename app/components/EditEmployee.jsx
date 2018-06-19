@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Modal, ModalBody, ModalFooter, ModalHeader, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { createEmployee, updateEmployee } from '../controller/employeesController';
+import store from '../store';
+import { employeeUpdated, employeeCreated } from '../actions';
 
 export default class EditEmployee extends Component {
   constructor(props) {
@@ -12,7 +14,7 @@ export default class EditEmployee extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.state = {
       employee: this.props.employee,
-      modal: this.props.modal || false,
+      modal: this.props.modal,
     };
   }
 
@@ -23,12 +25,20 @@ export default class EditEmployee extends Component {
 
     res.json()
       .then(
-        response => this.props.editCallback(response),
+        (response) => {
+          if (this.props.employee.name) {
+            store.dispatch(employeeUpdated({ employee: response }));
+          } else {
+            store.dispatch(employeeCreated({ employee: response }));
+          }
+          return response;
+        },
         (error) => {
         // ToDo
           console.log('Can not edit the employee', error);
         },
       );
+    this.toggle();
   }
 
   handleNameChange(e) {
@@ -112,8 +122,7 @@ export default class EditEmployee extends Component {
 
 EditEmployee.propTypes = {
   employee: PropTypes.objectOf(PropTypes.string),
-  modal: PropTypes.bool,
-  editCallback: PropTypes.func.isRequired,
+  modal: PropTypes.bool.isRequired,
 };
 
 EditEmployee.defaultProps = {
@@ -124,5 +133,4 @@ EditEmployee.defaultProps = {
     email: '@pigareva.cc',
     photo: '',
   },
-  modal: false,
 };
