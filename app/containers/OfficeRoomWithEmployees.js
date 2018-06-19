@@ -7,7 +7,7 @@ import { START_WORKING_DAY_TIME } from '../consts';
 const mapStateToProps = state => ({
   data: {
     error: false,
-    employees: state.employees.employeesData || [],
+    employees: state.employees.employeesData,
   },
 });
 

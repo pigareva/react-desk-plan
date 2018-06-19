@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import { employeeCreated, addButtonClick } from '../actions';
 
 const mapStateToProps = state => ({
-  showAdd: state.button.button || false,
+  showAdd: state.button.button,
 });
 
 const mapDispatchToProps = dispatch => ({

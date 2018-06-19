@@ -14,6 +14,12 @@ export const END_WORKING_DAY_TIME = 1440;
 export const WORKING_DAY_LONG = 480;
 export const TIME_INTERVAL = 100;
 
+export const INITIAL_STATE = {
+  time: { time: START_WORKING_DAY_TIME },
+  employees: { employeesData: [] },
+  button: { button: false },
+};
+
 export const CURRENT_TIME = 'CURRENT_TIME';
 export const NEW_HOUR = 'NEW_HOUR';
 export const NEW_DAY = 'NEW_DAY';
