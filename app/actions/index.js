@@ -1,6 +1,6 @@
 import {
   CURRENT_TIME, NEW_DAY, NEW_HOUR, EMPLOYEES_LOADED,
-  EMPLOYEE_CREATED, ADD_BUTTON_CLICK, EMPLOYEE_UPDATED,
+  EMPLOYEE_CREATED, ADD_BUTTON_CLICK, EMPLOYEE_UPDATED, EMPLOYEE_DELETED,
 } from '../consts';
 
 let dayNumber = 1;
@@ -34,6 +34,11 @@ export const employeeCreated = data => ({
 export const employeeUpdated = data => ({
   type: EMPLOYEE_UPDATED,
   employee: data.employee,
+});
+
+export const employeeDeleted = data => ({
+  type: EMPLOYEE_DELETED,
+  id: data.id,
 });
 
 export const addButtonClick = () => ({
