@@ -27,7 +27,7 @@ export default class StartNewDay extends Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader>Welcome to the office</ModalHeader>
           <ModalFooter>
-            <Button color="success" block onClick={this.onSubmit}>Start new day</Button>
+            <Button color="success" block onClick={this.onSubmit}>Start new day number {this.props.day}</Button>
           </ModalFooter>
         </Modal>
       </div>
@@ -38,6 +38,7 @@ export default class StartNewDay extends Component {
 StartNewDay.propTypes = {
   modal: PropTypes.bool,
   onSubmit: PropTypes.func.isRequired,
+  day: PropTypes.number.isRequired,
 };
 
 StartNewDay.defaultProps = {

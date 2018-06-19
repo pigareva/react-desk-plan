@@ -1,4 +1,4 @@
-import { CURRENT_TIME, NEW_DAY, NEW_HOUR, START_WORKING_DAY_TIME } from '../consts';
+import { CURRENT_TIME, NEW_DAY } from '../consts';
 
 const time = (state = {}, action) => {
   switch (action.type) {
@@ -6,22 +6,10 @@ const time = (state = {}, action) => {
     {
       return Object.assign({}, state, { time: action.time });
     }
-    case NEW_HOUR:
-      return [
-        ...state,
-        {
-          time: action.time,
-          isStartTime: action.isStartTime,
-          isEndTime: action.isEndTime,
-        },
-      ];
     case NEW_DAY:
-      return [
-        ...state,
-        {
-          time: START_WORKING_DAY_TIME,
-        },
-      ];
+    {
+      return Object.assign({}, state, { day: action.day });
+    }
     default:
       return state;
   }

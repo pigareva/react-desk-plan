@@ -15,7 +15,10 @@ export const WORKING_DAY_LONG = 480;
 export const TIME_INTERVAL = 100;
 
 export const INITIAL_STATE = {
-  time: { time: START_WORKING_DAY_TIME },
+  time: {
+    time: START_WORKING_DAY_TIME,
+    day: 1,
+  },
   employees: { employeesData: [] },
   button: { button: false },
 };

@@ -6,7 +6,7 @@ import TableWithEmployees from './Department';
 import HeaderWithAdd from '../containers/HeaderWithAdd';
 import StartNewDay from './StartNewDay';
 
-const OfficeRoom = ({ data, onSubmit }) => {
+const OfficeRoom = ({ data, onSubmit, day }) => {
   const { error, employees } = data;
   const body = error ? <div>Error: {error.message}</div> :
     getTables(getDepartmentsWithEmployees(employees))
@@ -18,7 +18,7 @@ const OfficeRoom = ({ data, onSubmit }) => {
       <div className="table-flex-container">
         {body}
       </div>
-      <StartNewDay modal onSubmit={() => onSubmit()} />
+      <StartNewDay modal onSubmit={() => onSubmit()} day={day} />
     </div>
   );
 };
@@ -28,6 +28,7 @@ export default OfficeRoom;
 OfficeRoom.propTypes = {
   data: PropTypes.objectOf(PropTypes.any),
   onSubmit: PropTypes.func.isRequired,
+  day: PropTypes.number.isRequired,
 };
 
 OfficeRoom.defaultProps = {

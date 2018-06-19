@@ -9,6 +9,7 @@ const mapStateToProps = state => ({
     error: false,
     employees: state.employees.employeesData,
   },
+  day: state.time.day,
 });
 
 const mapDispatchToProps = () => ({

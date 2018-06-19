@@ -10,14 +10,9 @@ export const currentTime = time => ({
   time,
 });
 
-export const newHour = time => ({
-  type: NEW_HOUR,
-  time,
-});
-
 export const newDay = {
   type: NEW_DAY,
-  dayNumber: dayNumber += 1,
+  day: dayNumber += 1,
 };
 
 export const fetchEmployees = data => ({
