@@ -1,4 +1,4 @@
-import { ADD_BUTTON_CLICK, EMPLOYEE_CREATED, EMPLOYEE_UPDATED } from '../consts';
+import { ADD_BUTTON_CLICK, EMPLOYEE_CREATED, EMPLOYEE_UPDATED, NEW_DAY, END_DAY } from '../consts';
 
 const button = (state = {}, action) => {
   switch (action.type) {
@@ -13,6 +13,14 @@ const button = (state = {}, action) => {
     case EMPLOYEE_UPDATED:
     {
       return Object.assign({}, state, { button: false });
+    }
+    case END_DAY:
+    {
+      return Object.assign({}, state, { buttonStart: true });
+    }
+    case NEW_DAY:
+    {
+      return Object.assign({}, state, { buttonStart: false });
     }
     default:
       return state;
