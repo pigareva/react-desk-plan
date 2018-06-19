@@ -1,4 +1,4 @@
-import { URL_CREATE_EMPLOYEE, URL_GET_ALL_EMPLOYEES, URL_UPDATE_EMPLOYEE } from '../consts';
+import { URL_CREATE_EMPLOYEE, URL_DELETE_EMPLOYEE, URL_GET_ALL_EMPLOYEES, URL_UPDATE_EMPLOYEE } from '../consts';
 import { fetchEmployees } from '../actions';
 import store from '../store';
 
@@ -56,4 +56,9 @@ export async function createEmployee(employee) {
     },
   );
   return createRes;
+}
+
+export async function deleteEmployee(employeeId) {
+  const deleteResponse = await fetch(`${URL_DELETE_EMPLOYEE}${employeeId}`);
+  return deleteResponse;
 }
