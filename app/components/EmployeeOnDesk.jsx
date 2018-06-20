@@ -20,16 +20,12 @@ export default class EmployeeOnDesk extends Component {
     this.toggleAddModal = this.toggleAddModal.bind(this);
     this.editEmployee = this.editEmployee.bind(this);
     this.state = {
-      atWork: true,
+      atWork: false,
       timerIsOff: false,
       employee: this.props.employee,
       showEdit: false,
       showAdd: false,
     };
-  }
-
-  componentDidMount() {
-    this.comeToOffice();
   }
 
   get email() {
@@ -109,7 +105,9 @@ export default class EmployeeOnDesk extends Component {
               <DeskClock
                 endTime={WORKING_DAY_LONG}
                 isOff={this.state.timerIsOff}
+                startTimeCallback={this.comeToOffice}
                 endTimeCallback={this.goHome}
+                delay={this.state.employee.delay}
               />
             </Button>
             <Button onClick={this.toggleEmployeeOnDesk}>

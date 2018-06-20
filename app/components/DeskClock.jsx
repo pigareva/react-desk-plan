@@ -6,7 +6,8 @@ import Clock from './Clock';
 export default class DeskClock extends Component {
   constructor(props) {
     super(props);
-    this.state = { time: null };
+    this.startTime = this.startTime.bind(this);
+    this.state = { time: null, timeToShow: 0 };
   }
 
   componentDidMount() {
@@ -19,12 +20,17 @@ export default class DeskClock extends Component {
 
   tick() {
     const currentTime = this.state.time || this.props.startTime;
+    const { timeToShow } = this.state;
     if (!this.props.isOff) {
       this.setState({
         time: currentTime >= this.props.endTime ? this.props.endTime : currentTime + 1,
+        timeToShow: currentTime < this.props.delay ? 0 : timeToShow + 1,
       });
     }
-    if (this.state.time === this.props.endTime && this.props.endTimeCallback) {
+    if (this.state.time === Number(this.props.delay) && this.props.startTimeCallback) {
+      this.props.startTimeCallback();
+    }
+    if (this.state.timeToShow === this.props.endTime && this.props.endTimeCallback) {
       this.props.endTimeCallback();
     }
   }
@@ -41,7 +47,7 @@ export default class DeskClock extends Component {
   }
 
   render() {
-    return <Clock time={this.state.time} />;
+    return <Clock time={this.state.timeToShow} />;
   }
 }
 
@@ -50,6 +56,8 @@ DeskClock.propTypes = {
   endTime: PropTypes.number,
   isOff: PropTypes.bool,
   endTimeCallback: PropTypes.func,
+  startTimeCallback: PropTypes.func,
+  delay: PropTypes.string,
 };
 
 DeskClock.defaultProps = {
@@ -57,4 +65,6 @@ DeskClock.defaultProps = {
   startTime: 0,
   endTime: 99999999999,
   endTimeCallback: null,
+  startTimeCallback: null,
+  delay: 1,
 };
