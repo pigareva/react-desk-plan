@@ -6,9 +6,7 @@ const webpack = require('webpack');
 
 const plugins = [
   // Create a NODE_ENV const https://webpack.js.org/plugins/define-plugin
-  new webpack.DefinePlugin({
-    NODE_ENV: JSON.stringify(NODE_ENV),
-  }),
+  new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(NODE_ENV) }),
 
   new webpack.HotModuleReplacementPlugin(),
 ];
