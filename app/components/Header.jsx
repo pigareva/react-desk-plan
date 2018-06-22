@@ -5,15 +5,15 @@ import { PlusIcon } from 'react-octicons';
 import HeaderClock from '../containers/HeaderClock';
 import EditEmployee from './EditEmployee';
 
-const Header = ({ toggleShowAdd, showAdd, addEmployee }) => (
+const Header = ({
+  toggleShowAdd, showAdd, addEmployee, sunBox,
+}) => (
   <header>
     <Button onClick={toggleShowAdd}>
       <PlusIcon />
     </Button>
     <h1 className="text-center">Desk plan</h1>
-    <div className="sun-box">
-      <span className="sun-symbol">☀</span>
-    </div>
+    {sunBox}
     <Container>
       <Row>
         <Col xs="3">Local time is</Col>
@@ -34,4 +34,5 @@ Header.propTypes = {
   showAdd: PropTypes.bool.isRequired,
   addEmployee: PropTypes.func.isRequired,
   toggleShowAdd: PropTypes.func.isRequired,
+  sunBox: PropTypes.objectOf(PropTypes.any).isRequired,
 };
