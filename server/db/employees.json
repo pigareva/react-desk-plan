@@ -12,6 +12,7 @@
     "name": "Albus Dumbledore",
     "email": "dumbledore@pigareva.cc",
     "photo": "https://cdn.lifehack.org/wp-content/uploads/2014/10/3770585-9693277282-vlcsn-copy.png"
+
   },
   {
     "department": "HR",
@@ -82,6 +83,7 @@
     "name": "Draco Malfoy",
     "email": "malfoy@pigareva.cc",
     "photo": "https://imgix.bustle.com/rehost/2016/9/13/6a08c5f4-def1-4c78-9227-2dbd4c268b6a.jpg?w=970&h=582&fit=crop&crop=faces&auto=format&q=70"
+
   },
   {
     "department": "B2B Sales",
@@ -103,6 +105,7 @@
     "name": "Peter Pettigrew",
     "email": "pettigrew@pigareva.cc",
     "photo": "https://s.yimg.com/uu/api/res/1.2/EIqd1glK2Wc5HAuU36Yybw--~B/aD0zNTg7dz02MDA7c209MTthcHBpZD15dGFjaHlvbg--/http://media.zenfs.com/en-US/homerun/hello_giggles_454/2354558a6c609a982d66dc913c8f812d"
+
   },
   {
     "department": "B2B Sales",
@@ -110,6 +113,7 @@
     "name": "Tom Riddle",
     "email": "voldemort@pigareva.cc",
     "photo": "https://newstracker.ru/attachments/547ef49b03b9068384705d1c26f0238a426515aa/store/fill/1200/630/61ba4bef5f4997aab1af7817ea4a25ad9121b78713e2828d75f691f62488/7186d463-cd86-4d21-8da4-92e4d3cf6e78.jpg"
+
   },
   {
     "department": "Customer care",
@@ -166,6 +170,7 @@
     "name": "Viktor Krum",
     "email": "krum@pigareva.cc",
     "photo": "https://images.ctfassets.net/bxd3o8b291gf/7i6WdBp1DiKKgKWUuIq2aI/f56a07a93c2632b4416b062842dd0af1/ViktorKrum_WB_F4_ViktorKrumArmsCrossed_Promo_080615_Port.jpg?w=320&h=240&fit=thumb&f=top&q=85"
+
   },
   {
     "department": "Marketing",
@@ -187,6 +192,7 @@
     "name": "Severus Snape",
     "email": "snape@pigareva.cc",
     "photo": "https://images.ctfassets.net/bxd3o8b291gf/3I8tWnr8WIu44WAgAcIIaS/e5ab506aad4c5a02ffd6b9d62abc61df/SeverusSnape_WB_F5_SeverusSnapeHeadshotCloseUp_Still_080615_Land.jpg?w=1200"
+
   },
   {
     "department": "Working students",
@@ -201,5 +207,6 @@
     "name": "Dudley Dursley",
     "email": "dursley@pigareva.de",
     "photo": "https://vignette.wikia.nocookie.net/harrypotter/images/4/48/Dudley_Dursley.jpg/revision/latest?cb=20120131182025&path-prefix=de"
+
   }
 ]
