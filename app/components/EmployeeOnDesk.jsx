@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Card, CardBody, CardTitle, CardSubtitle, Button, ButtonGroup } from 'reactstrap';
-import { TrashcanIcon, PencilIcon, PlusIcon } from 'react-octicons';
+import { TrashcanIcon, PencilIcon } from 'react-octicons';
 import DeskClock from './DeskClock';
 import { DEFAULT_BACKGROUND, WORKING_DAY_LONG } from '../consts';
 import EditEmployee from './EditEmployee';
@@ -17,14 +17,12 @@ export default class EmployeeOnDesk extends Component {
     this.toggleEmployeeOnDesk = this.toggleEmployeeOnDesk.bind(this);
     this.deleteEmployee = this.deleteEmployee.bind(this);
     this.toggleEditModal = this.toggleEditModal.bind(this);
-    this.toggleAddModal = this.toggleAddModal.bind(this);
     this.editEmployee = this.editEmployee.bind(this);
     this.state = {
       atWork: false,
       timerIsOff: false,
       employee: this.props.employee,
       showEdit: false,
-      showAdd: false,
     };
   }
 
@@ -76,10 +74,6 @@ export default class EmployeeOnDesk extends Component {
     this.setState({ showEdit: !this.state.showEdit });
   }
 
-  toggleAddModal() {
-    this.setState({ showAdd: !this.state.showAdd });
-  }
-
   editEmployee(employee) {
     this.setState({ employee });
     this.toggleEditModal();
@@ -87,7 +81,6 @@ export default class EmployeeOnDesk extends Component {
 
   render() {
     const deskStyle = this.state.atWork ? 'desk-flex-block desk-at-work' : 'desk-flex-block';
-    const isEmployee = this.state.employee.name;
     const backgroundImage = this.state.employee.photo ? `url(${this.state.employee.photo})` : `url(${DEFAULT_BACKGROUND})`;
     return (
       <Card
@@ -99,31 +92,26 @@ export default class EmployeeOnDesk extends Component {
           <CardSubtitle>{this.department}</CardSubtitle>
         </CardBody>
 
-        {isEmployee ?
-          <ButtonGroup>
-            <Button className="clock-button">
-              <DeskClock
-                endTime={WORKING_DAY_LONG}
-                isOff={this.state.timerIsOff}
-                startTimeCallback={this.comeToOffice}
-                endTimeCallback={this.goHome}
-                delay={this.state.employee.delay}
-              />
-            </Button>
-            <Button onClick={this.toggleEmployeeOnDesk}>
-              {this.state.atWork ? 'I am working' : 'I am relaxing'}
-            </Button>
-            <Button onClick={this.deleteEmployee}>
-              <TrashcanIcon />
-            </Button>
-            <Button onClick={this.toggleEditModal}>
-              <PencilIcon />
-            </Button>
-          </ButtonGroup> :
-          <Button onClick={this.toggleAddModal}>
-            <PlusIcon />
+        <ButtonGroup>
+          <Button className="clock-button">
+            <DeskClock
+              endTime={WORKING_DAY_LONG}
+              isOff={this.state.timerIsOff}
+              startTimeCallback={this.comeToOffice}
+              endTimeCallback={this.goHome}
+              delay={this.state.employee.delay}
+            />
           </Button>
-          }
+          <Button onClick={this.toggleEmployeeOnDesk}>
+            {this.state.atWork ? 'I am working' : 'I am relaxing'}
+          </Button>
+          <Button onClick={this.deleteEmployee}>
+            <TrashcanIcon />
+          </Button>
+          <Button onClick={this.toggleEditModal}>
+            <PencilIcon />
+          </Button>
+        </ButtonGroup>
 
         {this.state.showEdit &&
           <EditEmployee
