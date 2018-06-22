@@ -20,6 +20,7 @@ export const INITIAL_STATE = {
   time: {
     time: START_WORKING_DAY_TIME,
     day: 1,
+    isDay: false,
   },
   employees: { employeesData: [] },
   button: {

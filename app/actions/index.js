@@ -8,15 +8,19 @@ let dayNumber = 1;
 export const currentTime = time => ({
   type: CURRENT_TIME,
   time,
+  day: dayNumber,
 });
 
 export const endDay = {
   type: END_DAY,
   day: dayNumber += 1,
+  isDay: false,
 };
 
 export const startDay = {
   type: NEW_DAY,
+  isDay: true,
+  day: dayNumber,
 };
 
 export const fetchEmployees = data => ({
