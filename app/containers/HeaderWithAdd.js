@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
-import React from 'react';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
 import { employeeCreated, addButtonClick } from '../actions';
