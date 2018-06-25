@@ -6,14 +6,16 @@ import HeaderClock from '../containers/HeaderClock';
 import EditEmployee from './EditEmployee';
 
 const Header = ({
-  toggleShowAdd, showAdd, addEmployee, sunBox,
+  toggleShowAdd, showAdd, addEmployee, headerStyle, sunStyle,
 }) => (
-  <header>
+  <header className={headerStyle}>
     <Button onClick={toggleShowAdd}>
       <PlusIcon />
     </Button>
     <h1 className="text-center">Desk plan</h1>
-    {sunBox}
+    <div className={sunStyle}>
+      <span className="sun-symbol">☀</span>
+    </div>
     <Container>
       <Row>
         <Col xs="3">Local time is</Col>
@@ -35,4 +37,11 @@ Header.propTypes = {
   addEmployee: PropTypes.func.isRequired,
   toggleShowAdd: PropTypes.func.isRequired,
   sunBox: PropTypes.objectOf(PropTypes.any).isRequired,
+  headerStyle: PropTypes.string,
+  sunStyle: PropTypes.string,
+};
+
+Header.defaultProps = {
+  headerStyle: '',
+  sunStyle: '',
 };

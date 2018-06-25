@@ -28,6 +28,15 @@
     animation: header-background 54s linear paused;
   }
 
+  .header-animation {
+    width: 100%;
+    min-height: 50px;
+    background-color: darkgrey;
+    color: #F6F6F6;
+    position: relative;
+    animation: header-background 54s linear running;
+  }
+
   @keyframes sun {
     from {
       left: 5%;
