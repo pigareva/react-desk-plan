@@ -36,7 +36,6 @@ Header.propTypes = {
   showAdd: PropTypes.bool.isRequired,
   addEmployee: PropTypes.func.isRequired,
   toggleShowAdd: PropTypes.func.isRequired,
-  sunBox: PropTypes.objectOf(PropTypes.any).isRequired,
   headerStyle: PropTypes.string,
   sunStyle: PropTypes.string,
 };
