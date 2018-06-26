@@ -8,10 +8,14 @@
     "type": "git",
     "url": "https://github.com/pigareva/react-desk-plan"
   },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./setupTests.js"
+  },
   "scripts": {
     "start": "webpack-dev-server --progress",
     "build": "NODE_ENV='production' webpack",
-    "server": "node ./server/server.js"
+    "server": "node ./server/server.js",
+    "test": "jest"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -22,20 +26,25 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.9",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
     "file-loader": "^1.1.11",
+    "jest": "^23.1.0",
     "node-sass": "^4.9.0",
     "nodemon": "^1.17.4",
+    "redux-test-utils": "^0.2.2",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
     "webpack": "^3",
     "webpack-dev-server": "^2.11.1"
   },
   "dependencies": {
+    "babel-jest": "^23.0.1",
     "babel-runtime": "^6.26.0",
     "body-parser": "^1.18.2",
     "bootstrap": "^4.1.1",
@@ -49,6 +58,7 @@
     "react-dom": "^16.0.0",
     "react-octicons": "^0.2.0",
     "react-redux": "^5.0.7",
+    "react-test-renderer": "^16.4.1",
     "reactstrap": "^6.0.1",
     "redux": "^4.0.0"
   }
