@@ -105,7 +105,7 @@ export default class EmployeeOnDesk extends Component {
           <Button onClick={this.toggleEmployeeOnDesk}>
             {this.state.atWork ? 'I am working' : 'I am relaxing'}
           </Button>
-          <Button onClick={this.deleteEmployee}>
+          <Button onClick={this.deleteEmployee} className="delete">
             <TrashcanIcon />
           </Button>
           <Button onClick={this.toggleEditModal}>
