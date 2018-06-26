@@ -10,10 +10,13 @@ const vanillaPromise = store => next => (action) => {
   return Promise.resolve(action).then(store.dispatch);
 };
 
-// Remove the last arg for production
-const store = createStore(rootReducer, INITIAL_STATE, compose(
-  applyMiddleware(vanillaPromise),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-));
+const composeEnhancers =
+  typeof window === 'object' &&
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose;
+
+const enhancer = composeEnhancers(applyMiddleware(vanillaPromise));
+
+const store = createStore(rootReducer, INITIAL_STATE, enhancer);
 
 export default store;
