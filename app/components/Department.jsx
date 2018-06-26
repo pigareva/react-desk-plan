@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import EmployeeOnDesk from './EmployeeOnDesk';
+import EmployeeOnDeskWithClockRestart from '../containers/EmployeeOnDeskWithClockRestart';
 
 const Department = (props) => {
   const employeesOnTable = props.department.employees
-    .map(employee => <EmployeeOnDesk employee={employee} key={employee._id} />);
+    .map(employee => <EmployeeOnDeskWithClockRestart employee={employee} key={employee._id} />);
   return (
     <div className="table-flex-block" key={props.department.department}>
       <h1 className="text-center">{props.department.department}</h1>

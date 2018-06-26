@@ -14,6 +14,7 @@ export default class EmployeeOnDesk extends Component {
     super(props);
     this.goHome = this.goHome.bind(this);
     this.comeToOffice = this.comeToOffice.bind(this);
+    this.startTimer = this.startTimer.bind(this);
     this.toggleEmployeeOnDesk = this.toggleEmployeeOnDesk.bind(this);
     this.deleteEmployee = this.deleteEmployee.bind(this);
     this.toggleEditModal = this.toggleEditModal.bind(this);
@@ -44,6 +45,10 @@ export default class EmployeeOnDesk extends Component {
 
   comeToOffice() {
     this.setState({ atWork: true, timerIsOff: false });
+  }
+
+  startTimer() {
+    this.setState({ timerIsOff: false });
   }
 
   toggleEmployeeOnDesk() {
@@ -100,6 +105,8 @@ export default class EmployeeOnDesk extends Component {
               startTimeCallback={this.comeToOffice}
               endTimeCallback={this.goHome}
               delay={this.state.employee.delay}
+              restartTime={this.props.restartTime}
+              startTimer={this.startTimer}
             />
           </Badge>
           <Button onClick={this.toggleEmployeeOnDesk}>
@@ -127,4 +134,5 @@ export default class EmployeeOnDesk extends Component {
 
 EmployeeOnDesk.propTypes = {
   employee: PropTypes.objectOf(PropTypes.string).isRequired,
+  restartTime: PropTypes.bool.isRequired,
 };

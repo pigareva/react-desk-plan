@@ -7,7 +7,7 @@ export default class DeskClock extends Component {
   constructor(props) {
     super(props);
     this.startTime = this.startTime.bind(this);
-    this.state = { time: null, timeToShow: 0 };
+    this.state = { time: 0, timeToShow: 0, restartTime: false };
   }
 
   componentDidMount() {
@@ -32,6 +32,14 @@ export default class DeskClock extends Component {
     }
     if (this.state.timeToShow === this.props.endTime && this.props.endTimeCallback) {
       this.props.endTimeCallback();
+    }
+    if (typeof (this.props.restartTime) !== 'undefined' && (this.props.restartTime !== this.state.restartTime)) {
+      if (!this.state.restartTime) {
+        this.setState({ time: this.props.startTime, timeToShow: 0 });
+        this.props.startTimer();
+      }
+
+      this.setState({ restartTime: !this.state.restartTime });
     }
   }
 
@@ -58,6 +66,8 @@ DeskClock.propTypes = {
   endTimeCallback: PropTypes.func,
   startTimeCallback: PropTypes.func,
   delay: PropTypes.string,
+  restartTime: PropTypes.bool.isRequired,
+  startTimer: PropTypes.func.isRequired,
 };
 
 DeskClock.defaultProps = {
