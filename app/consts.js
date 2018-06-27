@@ -30,7 +30,7 @@ export const INITIAL_STATE = {
 };
 
 export const CURRENT_TIME = 'CURRENT_TIME';
-export const NEW_DAY = 'NEW_DAY';
+export const START_DAY = 'START_DAY';
 export const END_DAY = 'END_DAY';
 
 export const EMPLOYEES_LOADED = 'EMPLOYEES_LOADED';

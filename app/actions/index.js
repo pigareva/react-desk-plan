@@ -1,5 +1,5 @@
 import {
-  CURRENT_TIME, END_DAY, NEW_DAY, EMPLOYEES_LOADED,
+  CURRENT_TIME, END_DAY, START_DAY, EMPLOYEES_LOADED,
   EMPLOYEE_CREATED, ADD_BUTTON_CLICK, EMPLOYEE_UPDATED, EMPLOYEE_DELETED,
 } from '../consts';
 
@@ -18,7 +18,7 @@ export const endDay = {
 };
 
 export const startDay = {
-  type: NEW_DAY,
+  type: START_DAY,
   isDay: true,
   day: dayNumber,
 };
