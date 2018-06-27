@@ -134,5 +134,9 @@ export default class EmployeeOnDesk extends Component {
 
 EmployeeOnDesk.propTypes = {
   employee: PropTypes.objectOf(PropTypes.string).isRequired,
-  restartTime: PropTypes.bool.isRequired,
+  restartTime: PropTypes.bool,
+};
+
+EmployeeOnDesk.defaultProps = {
+  restartTime: false,
 };
