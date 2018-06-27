@@ -2,7 +2,8 @@ export const BACKEND_PORT = '8000';
 
 const BACKEND_HOST = 'www.pigareva.de';
 const LOCAL_HOST = 'localhost';
-const URL_EMPLOYEES = `http://${LOCAL_HOST}:${BACKEND_PORT}/employees`;
+const host = process.env.NODE_ENV === 'development' ? LOCAL_HOST : BACKEND_HOST;
+const URL_EMPLOYEES = `http://${host}:${BACKEND_PORT}/employees`;
 
 export const URL_GET_ALL_EMPLOYEES = URL_EMPLOYEES;
 export const URL_DELETE_EMPLOYEE = `${URL_EMPLOYEES}/delete/`;
