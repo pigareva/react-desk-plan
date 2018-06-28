@@ -12,17 +12,25 @@ export default class EditEmployee extends Component {
     this.toggle = this.toggle.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleDepartmentChange = this.handleDepartmentChange.bind(this);
+    this.handleCustomDepartmentChange = this.handleCustomDepartmentChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.state = {
       employee: this.props.employee,
       modal: this.props.modal,
+      departments: [],
+      newDepartment: null,
     };
   }
 
   async onSubmit() {
+    const data = this.state.employee;
+    data.delay = '0';
+    if (this.state.employee.department === OTHER && this.state.newDepartment) {
+      data.department = this.state.newDepartment;
+    }
     const res = this.props.employee.name ?
-      await updateEmployee(this.state.employee) :
-      await createEmployee(this.state.employee);
+      await updateEmployee(data) :
+      await createEmployee(data);
 
     res.json()
       .then(
@@ -35,7 +43,7 @@ export default class EditEmployee extends Component {
           return response;
         },
         (error) => {
-        // ToDo
+          // ToDo
           console.log('Can not edit the employee', error);
         },
       );
@@ -73,14 +81,24 @@ export default class EditEmployee extends Component {
     });
   }
 
+  handleCustomDepartmentChange(e) {
+    const { departments } = this.state;
+    departments.push(e.target.value);
+    this.setState({ departments, newDepartment: e.target.value });
+  }
+
   toggle() {
     this.setState({ modal: !this.state.modal });
   }
 
   render() {
-    const temp = this.props.departments;
-    temp.push(OTHER);
-    const options = temp.map(department => <option key={department} >{department}</option>);
+    const { departments } = this.props;
+    if (departments.indexOf(OTHER) === -1) {
+      departments.push(OTHER);
+    }
+    const departmentSelectInput = departments.indexOf(this.state.employee.department) > 0
+    || !this.props.employee.name ? this.state.employee.department : OTHER;
+    const options = departments.map(department => <option key={department}>{department}</option>);
     return (
       <div className="modal-edit">
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
@@ -108,10 +126,20 @@ export default class EditEmployee extends Component {
                 <Input
                   type="select"
                   onChange={this.handleDepartmentChange}
-                  value={this.state.employee.department}
+                  value={departmentSelectInput}
+                  name="department"
                 >
                   {options}
                 </Input>
+                {this.state.employee.department === OTHER &&
+                <Label> Enter new department name
+                  <Input
+                    type="text"
+                    onChange={this.handleCustomDepartmentChange}
+                    name="customdepartment"
+                  />
+                </Label>
+                }
               </FormGroup>
             </Form>
           </ModalBody>
