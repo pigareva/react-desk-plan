@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Container, Row, Col, Button } from 'reactstrap';
 import { PlusIcon } from 'react-octicons';
 import HeaderClock from '../containers/HeaderClock';
-import EditEmployee from './EditEmployee';
+import EditEmployeeWithDepartments from '../containers/EditEmpployeeWithDepartments';
 
 const Header = ({
   toggleShowAdd, showAdd, addEmployee, headerStyle, sunStyle,
@@ -25,7 +25,7 @@ const Header = ({
       </Row>
     </Container>
 
-    {showAdd && <EditEmployee modal={showAdd} editCallback={addEmployee} />}
+    {showAdd && <EditEmployeeWithDepartments modal={showAdd} editCallback={addEmployee} />}
 
   </header>
 );

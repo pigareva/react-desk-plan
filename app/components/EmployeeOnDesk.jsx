@@ -4,7 +4,7 @@ import { Card, CardBody, CardTitle, CardSubtitle, Button, ButtonGroup, Badge } f
 import { TrashcanIcon, PencilIcon } from 'react-octicons';
 import DeskClock from './DeskClock';
 import { DEFAULT_BACKGROUND, WORKING_DAY_LONG } from '../consts';
-import EditEmployee from './EditEmployee';
+import EditEmployeeWithDepartments from '../containers/EditEmpployeeWithDepartments';
 import { deleteEmployee } from '../controller/employeesController';
 import store from '../store';
 import { employeeDeleted } from '../actions';
@@ -121,7 +121,7 @@ export default class EmployeeOnDesk extends Component {
         </ButtonGroup>
 
         {this.state.showEdit &&
-          <EditEmployee
+          <EditEmployeeWithDepartments
             employee={this.state.employee}
             editCallback={this.editEmployee}
             modal={this.state.showEdit}

@@ -77,6 +77,8 @@ export default class EditEmployee extends Component {
   }
 
   render() {
+    const options = this.props.departments
+      .map(department => <option key={department} >{department}</option>);
     return (
       <div className="modal-edit">
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
@@ -102,10 +104,11 @@ export default class EditEmployee extends Component {
 
                 <Label>Department</Label>
                 <Input
-                  type="text"
-                  value={this.state.employee.department}
+                  type="select"
                   onChange={this.handleDepartmentChange}
-                />
+                >
+                  {options}
+                </Input>
               </FormGroup>
             </Form>
           </ModalBody>
@@ -123,6 +126,7 @@ export default class EditEmployee extends Component {
 EditEmployee.propTypes = {
   employee: PropTypes.objectOf(PropTypes.string),
   modal: PropTypes.bool.isRequired,
+  departments: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 EditEmployee.defaultProps = {
