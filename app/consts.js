@@ -40,3 +40,5 @@ export const EMPLOYEE_UPDATED = 'EMPLOYEE_UPDATED';
 export const EMPLOYEE_DELETED = 'EMPLOYEE_DELETED';
 
 export const ADD_BUTTON_CLICK = 'ADD_BUTTON_CLICK';
+
+export const OTHER = 'other';

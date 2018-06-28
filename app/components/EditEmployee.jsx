@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { createEmployee, updateEmployee } from '../controller/employeesController';
 import store from '../store';
 import { employeeUpdated, employeeCreated } from '../actions';
+import { OTHER } from '../consts';
 
 export default class EditEmployee extends Component {
   constructor(props) {
@@ -77,8 +78,9 @@ export default class EditEmployee extends Component {
   }
 
   render() {
-    const options = this.props.departments
-      .map(department => <option key={department} >{department}</option>);
+    const temp = this.props.departments;
+    temp.push(OTHER);
+    const options = temp.map(department => <option key={department} >{department}</option>);
     return (
       <div className="modal-edit">
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
@@ -106,6 +108,7 @@ export default class EditEmployee extends Component {
                 <Input
                   type="select"
                   onChange={this.handleDepartmentChange}
+                  value={this.state.employee.department}
                 >
                   {options}
                 </Input>
