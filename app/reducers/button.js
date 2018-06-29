@@ -16,7 +16,7 @@ const button = (state = {}, action) => {
     }
     case END_DAY:
     {
-      return Object.assign({}, state, { buttonStart: true });
+      return Object.assign({}, state, { buttonStart: true, button: false });
     }
     case START_DAY:
     {
