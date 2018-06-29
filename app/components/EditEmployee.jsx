@@ -11,6 +11,8 @@ export default class EditEmployee extends Component {
     super(props);
     this.toggle = this.toggle.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleDelayChange = this.handleDelayChange.bind(this);
+    this.handlePhotoChange = this.handlePhotoChange.bind(this);
     this.handleDepartmentChange = this.handleDepartmentChange.bind(this);
     this.handleCustomDepartmentChange = this.handleCustomDepartmentChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -52,7 +54,7 @@ export default class EditEmployee extends Component {
 
   handleNameChange(e) {
     const {
-      _id, department, photo,
+      _id, delay, department, photo,
     } = this.state.employee;
 
     this.setState({
@@ -62,6 +64,41 @@ export default class EditEmployee extends Component {
         email: `${e.target.value.split(' ').splice(-1, 1)}@pigareva.cc`,
         department,
         photo,
+        delay,
+      },
+    });
+  }
+
+  handleDelayChange(e) {
+    const {
+      _id, name, email, department, photo,
+    } = this.state.employee;
+
+    this.setState({
+      employee: {
+        _id,
+        name,
+        delay: e.target.value,
+        email,
+        department,
+        photo,
+      },
+    });
+  }
+
+  handlePhotoChange(e) {
+    const {
+      _id, name, delay, email, department,
+    } = this.state.employee;
+
+    this.setState({
+      employee: {
+        _id,
+        name,
+        delay,
+        email,
+        department,
+        photo: e.target.value,
       },
     });
   }
@@ -115,11 +152,27 @@ export default class EditEmployee extends Component {
                   name="name"
                 />
 
+                <Label>Delay</Label>
+                <Input
+                  type="number"
+                  value={this.state.employee.delay}
+                  onChange={this.handleDelayChange}
+                  name="delay"
+                />
+
                 <Label>Email</Label>
                 <Input
                   type="text"
                   disabled
                   value={this.state.employee.email}
+                />
+
+                <Label>Photo URL</Label>
+                <Input
+                  type="url"
+                  value={this.state.employee.photo}
+                  onChange={this.handlePhotoChange}
+                  name="photo"
                 />
 
                 <Label>Department</Label>
@@ -155,7 +208,7 @@ export default class EditEmployee extends Component {
 }
 
 EditEmployee.propTypes = {
-  employee: PropTypes.objectOf(PropTypes.string),
+  employee: PropTypes.objectOf(PropTypes.any),
   modal: PropTypes.bool.isRequired,
   departments: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
@@ -163,6 +216,7 @@ EditEmployee.propTypes = {
 EditEmployee.defaultProps = {
   employee: {
     _id: null,
+    delay: 0,
     name: '',
     department: '',
     email: '@pigareva.cc',
