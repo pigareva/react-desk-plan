@@ -12,7 +12,8 @@ const OfficeRoom = ({
   const { error, employees } = data;
   const body = error ? <div>Error: {error.message}</div> :
     getGroupedEmployees(getDepartmentsWithEmployees(employees))
-      .map(table => <DepartmentWithEmployees department={table} key={table.department} />);
+      .map(table => <DepartmentWithEmployees department={table} key={table.department} />)
+      .sort((a, b) => (a.key === 'Founders' ? -1 : 1));
 
   return (
     <div className="container">
