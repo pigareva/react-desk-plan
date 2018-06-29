@@ -120,7 +120,7 @@ export default class EmployeeOnDesk extends Component {
           </Button>
         </ButtonGroup>
 
-        {this.state.showEdit &&
+        {this.state.showEdit && this.props.restartTime &&
           <EditEmployeeWithDepartments
             employee={this.state.employee}
             editCallback={this.editEmployee}
