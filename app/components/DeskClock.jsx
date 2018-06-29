@@ -65,7 +65,7 @@ DeskClock.propTypes = {
   isOff: PropTypes.bool,
   endTimeCallback: PropTypes.func,
   startTimeCallback: PropTypes.func,
-  delay: PropTypes.string,
+  delay: PropTypes.number,
   restartTime: PropTypes.bool.isRequired,
   startTimer: PropTypes.func.isRequired,
 };

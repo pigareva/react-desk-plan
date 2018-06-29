@@ -133,7 +133,7 @@ export default class EmployeeOnDesk extends Component {
 }
 
 EmployeeOnDesk.propTypes = {
-  employee: PropTypes.objectOf(PropTypes.string).isRequired,
+  employee: PropTypes.objectOf(PropTypes.any).isRequired,
   restartTime: PropTypes.bool,
 };
 
