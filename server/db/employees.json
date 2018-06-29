@@ -1,14 +1,14 @@
 [
   {
     "department": "Founders",
-    "delay": "60",
+    "delay": 60,
     "name": "Harry Potter",
     "email": "potter@pigareva.de",
     "photo": "https://www.irishtimes.com/polopoly_fs/1.3170107.1501253408!/image/image.jpg_gen/derivatives/box_620_330/image.jpg"
   },
   {
     "department": "Founders",
-    "delay": "100",
+    "delay": 100,
     "name": "Albus Dumbledore",
     "email": "dumbledore@pigareva.cc",
     "photo": "https://cdn.lifehack.org/wp-content/uploads/2014/10/3770585-9693277282-vlcsn-copy.png"
@@ -16,70 +16,70 @@
   },
   {
     "department": "HR",
-    "delay": "20",
+    "delay": 20,
     "name": "Hermione Granger",
     "email": "granger@pigareva.cc",
     "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI1MNbCVOLNZx8c4uOjw8By4lGH6WvjVeFfKa-PNdEnxpXaDF5"
   },
   {
     "department": "HR",
-    "delay": "10",
+    "delay": 10,
     "name": "Minerva McGonagall",
     "email": "granger@pigareva.cc",
     "photo": "https://i.ytimg.com/vi/valcugsX8tg/maxresdefault.jpg"
   },
   {
     "department": "Finance",
-    "delay": "10",
+    "delay": 10,
     "name": "Mad-Eye Moody",
     "email": "moody@pigareva.cc",
     "photo": "http://cdn.playbuzz.com/cdn/b96530ea-fe7c-4583-9262-eb1a85ea5d90/6538a9f9-23ec-45ac-9757-fa3f79023077.jpg"
   },
   {
     "department": "Tech",
-    "delay": "10",
+    "delay": 10,
     "name": "Ron Weasley",
     "email": "weasley@pigareva.cc",
     "photo": "http://wallpaperstock.ru/tmp/R/5208_10.jpg"
   },
   {
     "department": "Tech",
-    "delay": "150",
+    "delay": 150,
     "name": "Rubeus Hagrid",
     "email": "hagrid@pigareva.cc",
     "photo": "https://ewedit.files.wordpress.com/2017/08/000080082.jpg"
   },
   {
     "department": "Tech",
-    "delay": "120",
+    "delay": 120,
     "name": "Sirius Black",
     "email": "black@pigareva.cc",
     "photo": "http://images6.fanpop.com/image/photos/32900000/Sirius-Black-Wallpaper-sirius-black-32913974-1024-768.jpg"
   },
   {
     "department": "Tech",
-    "delay": "170",
+    "delay": 170,
     "name": "Neville Longbottom",
     "email": "longbottom@pigareva.cc",
     "photo": "http://multifandom.ru/pic/201505/2560x1600/multifandom.ru-793.jpg"
   },
   {
     "department": "Tech",
-    "delay": "200",
+    "delay": 200,
     "name": "Cedric Diggory",
     "email": "diggory@pigareva.cc",
     "photo": "https://medias.spotern.com/spots/w1280/92449.jpg"
   },
   {
     "department": "B2B Sales",
-    "delay": "50",
+    "delay": 50,
     "name": "Bellatrix Lestrange",
     "email": "lestrange@pigareva.cc",
     "photo": "https://www.quizz.biz/uploads/quizz/313035/1_kr0d5.jpg"
   },
   {
     "department": "B2B Sales",
-    "delay": "10",
+    "delay": 10,
     "name": "Draco Malfoy",
     "email": "malfoy@pigareva.cc",
     "photo": "https://imgix.bustle.com/rehost/2016/9/13/6a08c5f4-def1-4c78-9227-2dbd4c268b6a.jpg?w=970&h=582&fit=crop&crop=faces&auto=format&q=70"
@@ -87,21 +87,21 @@
   },
   {
     "department": "B2B Sales",
-    "delay": "30",
+    "delay": 30,
     "name": "Gellert Grindelwald",
     "email": "grindelwald@pigareva.cc",
     "photo": "https://i.pinimg.com/originals/db/ff/85/dbff85eabf48a889011ba8435d6a5c4e.jpg"
   },
   {
     "department": "B2B Sales",
-    "delay": "40",
+    "delay": 40,
     "name": "Bartemius (Barty) Crouch",
     "email": "crouch@pigareva.cc",
     "photo": "http://i82.mindmix.ru/0/38/443800/22/8443922/exXJzB4DPHM.jpeg"
   },
   {
     "department": "B2B Sales",
-    "delay": "50",
+    "delay": 50,
     "name": "Peter Pettigrew",
     "email": "pettigrew@pigareva.cc",
     "photo": "https://s.yimg.com/uu/api/res/1.2/EIqd1glK2Wc5HAuU36Yybw--~B/aD0zNTg7dz02MDA7c209MTthcHBpZD15dGFjaHlvbg--/http://media.zenfs.com/en-US/homerun/hello_giggles_454/2354558a6c609a982d66dc913c8f812d"
@@ -109,7 +109,7 @@
   },
   {
     "department": "B2B Sales",
-    "delay": "15",
+    "delay": 15,
     "name": "Tom Riddle",
     "email": "voldemort@pigareva.cc",
     "photo": "https://newstracker.ru/attachments/547ef49b03b9068384705d1c26f0238a426515aa/store/fill/1200/630/61ba4bef5f4997aab1af7817ea4a25ad9121b78713e2828d75f691f62488/7186d463-cd86-4d21-8da4-92e4d3cf6e78.jpg"
@@ -117,56 +117,56 @@
   },
   {
     "department": "Customer care",
-    "delay": "20",
+    "delay": 20,
     "name": "Salazar Slytherin",
     "email": "slytherin@pigareva.cc",
     "photo": "https://i.ytimg.com/vi/i_pAGt6MQZA/maxresdefault.jpg"
   },
   {
     "department": "Customer care",
-    "delay": "50",
+    "delay": 50,
     "name": "Vincent Crabbe",
     "email": "crabbe@pigareva.cc",
     "photo": "http://media.2oceansvibe.com/wp-content/uploads/2011/10/hogwarts_vincent_crabbe_reference-1.jpg"
   },
   {
     "department": "Customer care",
-    "delay": "5",
+    "delay": 5,
     "name": "Millicent Bulstrode",
     "email": "bulstrode@pigareva.cc",
     "photo": "https://i.stack.imgur.com/Cm9qP.jpg"
   },
   {
     "department": "Customer care",
-    "delay": "10",
+    "delay": 10,
     "name": "Marcus Flint",
     "email": "flint@pigareva.cc",
     "photo": "https://cdn.evoke.ie/2016/05/04122553/marcus-flint-harry-potter-040516.jpg"
   },
   {
     "department": "Customer care",
-    "delay": "5",
+    "delay": 5,
     "name": "Gregory Goyle",
     "email": "goyle@pigareva.cc",
     "photo": "http://cdn.ebaumsworld.com/mediaFiles/picture/1044414/85007665.png"
   },
   {
     "department": "Customer care",
-    "delay": "5",
+    "delay": 5,
     "name": "Graham Montague",
     "email": "montague@pigareva.cc",
     "photo": "https://pa1.narvii.com/6183/04f93d9bef62b05cd9441016a1710ad08a279ad6_hq.gif"
   },
   {
     "department": "Product Team",
-    "delay": "5",
+    "delay": 5,
     "name": "Igor Karkaroff",
     "email": "karkaroff@pigareva.cc",
     "photo": "https://i.pinimg.com/originals/0a/07/d8/0a07d86aeaa9c55233a380e3bc93af31.jpg"
   },
   {
     "department": "Product Team",
-    "delay": "10",
+    "delay": 10,
     "name": "Viktor Krum",
     "email": "krum@pigareva.cc",
     "photo": "https://images.ctfassets.net/bxd3o8b291gf/7i6WdBp1DiKKgKWUuIq2aI/f56a07a93c2632b4416b062842dd0af1/ViktorKrum_WB_F4_ViktorKrumArmsCrossed_Promo_080615_Port.jpg?w=320&h=240&fit=thumb&f=top&q=85"
@@ -174,21 +174,21 @@
   },
   {
     "department": "Marketing",
-    "delay": "10",
+    "delay": 10,
     "name": "Dolores Jane Umbridge",
     "email": "umbridge@pigareva.cc",
     "photo": "http://img.timeinc.net/time/photoessays/2011/top10_bad_teachers/harry_potter.jpg"
   },
   {
     "department": "Marketing",
-    "delay": "5",
+    "delay": 5,
     "name": "Argus Filch",
     "email": "filch@pigareva.cc",
     "photo": "http://images6.fanpop.com/image/photos/38800000/Filch-argus-filch-38813363-1214-801.jpg"
   },
   {
     "department": "Product Team",
-    "delay": "10",
+    "delay": 10,
     "name": "Severus Snape",
     "email": "snape@pigareva.cc",
     "photo": "https://images.ctfassets.net/bxd3o8b291gf/3I8tWnr8WIu44WAgAcIIaS/e5ab506aad4c5a02ffd6b9d62abc61df/SeverusSnape_WB_F5_SeverusSnapeHeadshotCloseUp_Still_080615_Land.jpg?w=1200"
@@ -196,14 +196,14 @@
   },
   {
     "department": "Working students",
-    "delay": "5",
+    "delay": 5,
     "name": "John Doe",
     "email": "john@pigareva.cc",
     "photo": ""
   },
   {
     "department": "Working students",
-    "delay": "5",
+    "delay": 5,
     "name": "Dudley Dursley",
     "email": "dursley@pigareva.de",
     "photo": "https://vignette.wikia.nocookie.net/harrypotter/images/4/48/Dudley_Dursley.jpg/revision/latest?cb=20120131182025&path-prefix=de"
