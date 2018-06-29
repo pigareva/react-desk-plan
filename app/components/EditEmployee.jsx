@@ -132,7 +132,7 @@ export default class EditEmployee extends Component {
                   {options}
                 </Input>
                 {this.state.employee.department === OTHER &&
-                <Label> Enter new department name
+                <Label>Enter new department name
                   <Input
                     type="text"
                     onChange={this.handleCustomDepartmentChange}
