@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Clock displays the time and the greeting 1`] = `
+<div>
+  <div
+    className="clock"
+  >
+    01
+    :
+    05
+  </div>
+  <Greeting
+    time={65}
+  />
+</div>
+`;

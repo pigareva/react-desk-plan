@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Greeting changes the text depending on time 1`] = `
+<div
+  className="greeting"
+>
+   Good morning! 
+</div>
+`;
+
+exports[`Greeting changes the text depending on time 2`] = `
+<div
+  className="greeting"
+>
+   Bon appetite! 
+</div>
+`;
+
+exports[`Greeting changes the text depending on time 3`] = `
+<div
+  className="greeting"
+>
+   Bye bye! 
+</div>
+`;
