@@ -33,8 +33,9 @@ test('Button reducer handles END_DAY', () => {
   const startAction = {
     type: END_DAY,
   };
-  expect(buttonReducer({}, startAction)).toEqual({ buttonStart: true });
-  expect(buttonReducer({ buttonStart: false }, startAction)).toEqual({ buttonStart: true });
+  expect(buttonReducer({}, startAction)).toEqual({ buttonStart: true, button: false });
+  expect(buttonReducer({ buttonStart: false }, startAction))
+    .toEqual({ buttonStart: true, button: false });
 });
 
 test('Button reducer handles START_DAY', () => {
