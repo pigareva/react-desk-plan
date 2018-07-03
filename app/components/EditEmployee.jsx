@@ -26,7 +26,6 @@ export default class EditEmployee extends Component {
 
   async onSubmit() {
     const data = this.state.employee;
-    data.delay = '0';
     if (this.state.employee.department === OTHER && this.state.newDepartment) {
       data.department = this.state.newDepartment;
     }
@@ -134,8 +133,6 @@ export default class EditEmployee extends Component {
     if (departments.indexOf(OTHER) === -1) {
       departments.push(OTHER);
     }
-    // const departmentSelectInput = departments.indexOf(this.state.employee.department) > 0
-    // || !this.props.employee.name ? this.state.employee.department : OTHER;
     const options = departments.map(department => <option key={department}>{department}</option>);
     return (
       <div className="modal-edit">
@@ -159,6 +156,7 @@ export default class EditEmployee extends Component {
                   value={this.state.employee.delay}
                   onChange={this.handleDelayChange}
                   name="delay"
+                  min="0"
                 />
 
                 <Label>Email</Label>
