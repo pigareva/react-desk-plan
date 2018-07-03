@@ -105,13 +105,14 @@ export default class EditEmployee extends Component {
 
   handleDepartmentChange(e) {
     const {
-      _id, name, email, photo,
+      _id, name, email, photo, delay,
     } = this.state.employee;
     this.setState({
       employee: {
         _id,
         name,
         email,
+        delay,
         department: e.target.value,
         photo,
       },
@@ -133,8 +134,8 @@ export default class EditEmployee extends Component {
     if (departments.indexOf(OTHER) === -1) {
       departments.push(OTHER);
     }
-    const departmentSelectInput = departments.indexOf(this.state.employee.department) > 0
-    || !this.props.employee.name ? this.state.employee.department : OTHER;
+    // const departmentSelectInput = departments.indexOf(this.state.employee.department) > 0
+    // || !this.props.employee.name ? this.state.employee.department : OTHER;
     const options = departments.map(department => <option key={department}>{department}</option>);
     return (
       <div className="modal-edit">
@@ -179,7 +180,7 @@ export default class EditEmployee extends Component {
                 <Input
                   type="select"
                   onChange={this.handleDepartmentChange}
-                  value={departmentSelectInput}
+                  value={this.state.employee.department}
                   name="department"
                 >
                   {options}
