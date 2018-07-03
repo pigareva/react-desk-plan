@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Greeting from './Greeting';
+import getTime from '../functions/getTime';
 
 const Clock = ({ time, isGreetingNeeded }) => (
   <div>
-    <div className="clock">{String(Math.floor(time / 60)).padStart(2, '0')}:{String(time % 60).padStart(2, '0')}</div>
+    <div className="clock">{getTime(time)}</div>
     {isGreetingNeeded && <Greeting time={time || 0} />}
   </div>);
 
