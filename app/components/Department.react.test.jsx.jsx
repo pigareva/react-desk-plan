@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { shallow } from 'enzyme';
 import Department from './Department';
@@ -22,7 +23,6 @@ describe('Department component', () => {
   beforeEach(() => {
     EmployeeOnDeskWithClockRestart.mockClear();
   });
-
 
   it('should display department name in header', () => {
     const { header } = setup('Founders');
