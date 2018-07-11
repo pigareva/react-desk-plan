@@ -52,6 +52,7 @@ export async function createEmployee(employee) {
         email: employee.email,
         department: employee.department,
         photo: employee.photo,
+        delay: employee.delay,
       }),
     },
   );
