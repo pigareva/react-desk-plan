@@ -16,12 +16,21 @@ export default class EditEmployee extends Component {
     this.handleDepartmentChange = this.handleDepartmentChange.bind(this);
     this.handleCustomDepartmentChange = this.handleCustomDepartmentChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.handleEnter = this.handleEnter.bind(this);
     this.state = {
       employee: this.props.employee,
       modal: this.props.modal,
       departments: [],
       newDepartment: null,
     };
+  }
+
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleEnter);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleEnter);
   }
 
   async onSubmit() {
@@ -49,6 +58,12 @@ export default class EditEmployee extends Component {
         },
       );
     this.toggle();
+  }
+
+  async handleEnter(e) {
+    if (e.key === 'Enter') {
+      await this.onSubmit();
+    }
   }
 
   handleNameChange(e) {
