@@ -1,3 +1,3 @@
 module.exports = {
-  db: 'mongodb://guest:guest42@ds147459.mlab.com:47459/employees',
+  db: 'mongodb+srv://guest:guest42@potter2.gaxf6.mongodb.net/employees?retryWrites=true&w=majority',
 };
