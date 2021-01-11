@@ -12,8 +12,8 @@
     "setupTestFrameworkScriptFile": "./setupTests.js"
   },
   "scripts": {
-    "start": "webpack-dev-server --progress",
-    "build": "NODE_ENV='production' webpack",
+    "start": "webpack serve --watch",
+    "build": "npx webpack --env prod",
     "server": "node ./server/server.js",
     "test": "jest",
     "test-update": "jest --updateSnapshot"
@@ -44,7 +44,8 @@
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
     "webpack": "^5",
-    "webpack-dev-server": "^2.11.5"
+    "webpack-cli": "^4.3.1",
+    "webpack-dev-server": "^3.11.1"
   },
   "resolutions": {
     "chokidar": "^3.4.0"
