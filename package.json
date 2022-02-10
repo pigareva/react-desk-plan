@@ -38,7 +38,7 @@
     "eslint-plugin-react": "^7.7.0",
     "file-loader": "^1.1.11",
     "jest": "^23.1.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "nodemon": "^1.17.4",
     "redux-test-utils": "^0.2.2",
     "sass-loader": "^7.0.1",
